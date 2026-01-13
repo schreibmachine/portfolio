@@ -1,46 +1,112 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
-    <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.3/dist/aframe-physics-system.min.js"></script>
-  </head>
-  <body>
+<head>
+    <title>cannon.js - pile demo</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+<body>
+    <script src="./build/cannon.js"></script>
+    <script src="./build/cannon.demo.js"></script>
+    <script src="./libs/dat.gui.js"></script>
+    <script src="./libs/Three.js"></script>
+    <script src="./libs/TrackballControls.js"></script>
+    <script src="./libs/Detector.js"></script>
+    <script src="./libs/Stats.js"></script>
+    <script src="./libs/smoothie.js"></script>
+    <script>
 
-    <!-- starting to rewrite this for three.js with a physics engine like cannon -->
+    var demo = new CANNON.Demo();
+    var size = 1;
+    var interval;
 
-    <button type="button" onclick="alert('Hello world!')">Click Me!</button>
-    
-    <a-scene physics>
-      <a-box position="-1 4 -3" rotation="0 45 0" color="#ffa261" dynamic-body></a-box>
-      <a-box position="-0.5 4 -3" rotation="0 45 0" color="#ffffff" dynamic-body></a-box>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="12" height="4" color="#5abab7" static-body></a-plane>
-      <a-sky color="#fefedf"></a-sky>
+    // Spheres
+    demo.addScene("Pile",function(){
+        if(interval) clearInterval(interval);
 
-      <!-- HUD attached to the camera -->
-      <a-camera>
-        <a-cursor></a-cursor>
-      </a-camera>
-      <a-entity camera look-controls>
-            <a-entity text="
-                align: left; 
-                font: sourcecodepro;
-                value: How To Use: \n You can look around using the mouse. Click a box to get to it's project. \n Refresh the page for a random new arrangement! ... (or if something went wrong...); 
-                color: #007778; 
-                anchor: left;
-                wrapCount: 130;
-                width: 2;"
-                position="-1.9 -0.75 -1"
-                scale="1 1 1">
-            </a-entity>
-        </a-entity>
-      <a-entity text="
-      align: center; 
-      font: sourcecodepro;
-      value: Hello! \n Welcome to my portfolio; 
-      color: #e352e1; 
-      width: 5; 
-      anchor: align"
-      position="-0.9 4 -3"
-      scale="1.5 1.5 1.5"></a-entity>
-    </a-scene>
-  </body>
+        var world = demo.getWorld();
+
+        world.gravity.set(0,0,-50);
+        world.broadphase = new CANNON.NaiveBroadphase();
+        world.solver.iterations = 5;
+
+        world.defaultContactMaterial.contactEquationStiffness = 5e6;
+        world.defaultContactMaterial.contactEquationRelaxation = 10;
+
+        // Since we have many bodies and they don't move very much, we can use the less accurate quaternion normalization
+        world.quatNormalizeFast = true;
+        world.quatNormalizeSkip = 3; // ...and we do not have to normalize every step.
+
+        // ground plane
+        var groundShape = new CANNON.Plane(new CANNON.Vec3(0,0,1));
+        var groundBody = new CANNON.Body({ mass: 0 });
+        groundBody.addShape(groundShape);
+        groundBody.position.set(0,0,0);
+        world.addBody(groundBody);
+        demo.addVisual(groundBody);
+
+        // plane -x
+        var planeShapeXmin = new CANNON.Plane();
+        var planeXmin = new CANNON.Body({ mass: 0 });
+        planeXmin.addShape(planeShapeXmin);
+        planeXmin.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0),Math.PI/2);
+        planeXmin.position.set(-5,0,0);
+        world.addBody(planeXmin);
+
+        // Plane +x
+        var planeShapeXmax = new CANNON.Plane();
+        var planeXmax = new CANNON.Body({ mass: 0 });
+        planeXmax.addShape(planeShapeXmax);
+        planeXmax.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0),-Math.PI/2);
+        planeXmax.position.set(5,0,0);
+        world.addBody(planeXmax);
+
+        // Plane -y
+        var planeShapeYmin = new CANNON.Plane();
+        var planeYmin = new CANNON.Body({ mass: 0 });
+        planeYmin.addShape(planeShapeYmin);
+        planeYmin.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
+        planeYmin.position.set(0,-5,0);
+        world.addBody(planeYmin);
+
+        // Plane +y
+        var planeShapeYmax = new CANNON.Plane();
+        var planeYmax = new CANNON.Body({ mass: 0 });
+        planeYmax.addShape(planeShapeYmax);
+        planeYmax.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),Math.PI/2);
+        planeYmax.position.set(0,5,0);
+        world.addBody(planeYmax);
+
+        var bodies = [];
+        var i = 0;
+        interval = setInterval(function(){
+            // Sphere
+            i++;
+            var sphereShape = new CANNON.Sphere(size);
+            var b1 = new CANNON.Body({
+                mass: 5,
+                position: new CANNON.Vec3(
+                    2*size*Math.sin(i),
+                    2*size*Math.cos(i),
+                    7*2*size
+                )
+            });
+            b1.addShape(sphereShape);
+            world.addBody(b1);
+            demo.addVisual(b1);
+            bodies.push(b1);
+
+            if(bodies.length>80){
+                var b = bodies.shift();
+                demo.removeVisual(b);
+                world.remove(b);
+            }
+        },100);
+    });
+
+    demo.start();
+
+    </script>
+</body>
 </html>
