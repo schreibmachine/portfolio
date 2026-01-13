@@ -1,0 +1,83 @@
+body {
+  background-color: #52e368
+}
+
+h1 {
+  color: #e352e1;
+  text-align: center;
+  position: absolute;
+  font-family: "Courier New";
+  font-size: xx-large;
+  top: 0.5vh;
+  left: 1vw;
+  
+}
+
+h2 {
+  color: #52e368;
+  text-align: center;
+  position: absolute;
+  font-family: "Courier New";
+  font-size: large;
+  top: 5vh;
+  left: 1vw;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+#myCoolRenderer 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* 
+------- my colors: -------
+*/
+
+#redy
+{
+    color: #e35252
+}
+
+#greeny
+{
+    color: #52e368
+}
+
+/* gradient pink: */
+
+#purple
+{
+    color: #e352e1
+}
+
+#pinky
+{
+    color: #ff50b1
+}
+
+#purplange
+{
+    color: #ff7383
+}
+
+#orange
+{
+    color: #ffa261
+}
+
+#yellorange
+{
+    color: #ffd057
+}
+
+#yellow
+{
+    color: #f9f871
+}

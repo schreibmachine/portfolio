@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Portfolio Vi Schreiber</title>
         <meta name="description" content="Using Rapier from CDN" />
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
         <style>
             body {
                 overflow: hidden;
@@ -25,6 +26,9 @@
         </script>
     </head>
     <body>
+        <h1>VI SCHREIBER</h1>
+        <h2>PORTFOLIO WEBSITE</h2>
+        <button type="button" onclick="alert('Hello world!')">Click Me!</button>
         <script type="module">
             import * as THREE from 'three'
             import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
@@ -223,6 +227,7 @@
             renderer.shadowMap.enabled = true
             renderer.shadowMap.type = THREE.VSMShadowMap
             document.body.appendChild(renderer.domElement)
+            renderer.domElement.id = 'myCoolRenderer'
 
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight
