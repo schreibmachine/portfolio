@@ -298,6 +298,7 @@
             const floorShape = RAPIER.ColliderDesc.cuboid(25, 0.5, 25)
             world.createCollider(floorShape, floorBody)
 
+            /*
             // creating a shape from a loaded geometry. (Using OBJLoader)
             new OBJLoader().loadAsync('./models/suzanne.obj').then((object) => {
                 //console.log(object)
@@ -312,8 +313,9 @@
                 world.createCollider(suzanneShape, suzanneBody)
                 dynamicBodies.push([suzanneMesh, suzanneBody])
             })
+            */
 
-            const car = new Car(scene, [0, 2, 0])
+            // const car = new Car(scene, [0, 2, 0])
 
             const raycaster = new THREE.Raycaster()
             const mouse = new THREE.Vector2()
