@@ -31,7 +31,7 @@
         <button type="button" onclick="alert('Hello world!')">Click Me!</button>
         <script type="module">
             import * as THREE from 'three'
-            import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+            // import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
             import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
             import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'
             import Stats from 'three/addons/libs/stats.module.js'
@@ -50,6 +50,7 @@
                     scene.add(this.mesh)
                 }
 
+
                 update() {
                     if (this.enabled) {
                         const { vertices, colors } = world.debugRender()
@@ -61,143 +62,6 @@
                     }
                 }
             }
-
-            /*
-            class Car {
-                dynamicBodies = []
-
-                constructor(scene, position) {
-                    new GLTFLoader().loadAsync('./models/sedanSports.glb').then((gltf) => {
-                        //console.log(gltf.scene)
-
-                        const carMesh = gltf.scene.getObjectByName('body')
-                        carMesh.position.set(0, 0, 0)
-                        carMesh.traverse((o) => {
-                            o.castShadow = true
-                        })
-
-                        const wheelBLMesh = gltf.scene.getObjectByName('wheel_backLeft')
-                        const wheelBRMesh = gltf.scene.getObjectByName('wheel_backRight')
-                        const wheelFLMesh = gltf.scene.getObjectByName('wheel_frontLeft')
-                        const wheelFRMesh = gltf.scene.getObjectByName('wheel_frontRight')
-                        wheelBLMesh.position.set(0, 0, 0)
-                        wheelBRMesh.position.set(0, 0, 0)
-                        wheelFLMesh.position.set(0, 0, 0)
-                        wheelFRMesh.position.set(0, 0, 0)
-
-                        //scene.add(gltf.scene)
-                        scene.add(carMesh, wheelBLMesh, wheelBRMesh, wheelFLMesh, wheelFRMesh)
-
-                        const carBody = world.createRigidBody(
-                            RAPIER.RigidBodyDesc.dynamic()
-                                .setTranslation(...position)
-                                .setCanSleep(false)
-                        )
-                        const wheelBLBody = world.createRigidBody(
-                            RAPIER.RigidBodyDesc.dynamic()
-                                .setTranslation(-1 + position[0], 1 + position[1], 1 + position[2])
-                                .setCanSleep(false)
-                        )
-                        const wheelBRBody = world.createRigidBody(
-                            RAPIER.RigidBodyDesc.dynamic()
-                                .setTranslation(1 + position[0], 1 + position[1], 1 + position[2])
-                                .setCanSleep(false)
-                        )
-                        const wheelFLBody = world.createRigidBody(
-                            RAPIER.RigidBodyDesc.dynamic()
-                                .setTranslation(-1 + position[0], 1 + position[1], -1 + position[2])
-                                .setCanSleep(false)
-                        )
-                        const wheelFRBody = world.createRigidBody(
-                            RAPIER.RigidBodyDesc.dynamic()
-                                .setTranslation(1 + position[0], 1 + position[1], -1 + position[2])
-                                .setCanSleep(false)
-                        )
-
-                        // create a convexhull from all meshes in the carMesh group
-                        const v = new THREE.Vector3()
-                        let positions = []
-                        carMesh.updateMatrixWorld(true) // ensure world matrix is up to date
-                        carMesh.traverse((o) => {
-                            if (o.type === 'Mesh') {
-                                const positionAttribute = o.geometry.getAttribute('position')
-                                for (let i = 0, l = positionAttribute.count; i < l; i++) {
-                                    v.fromBufferAttribute(positionAttribute, i)
-                                    v.applyMatrix4(o.parent.matrixWorld)
-                                    positions.push(...v)
-                                }
-                            }
-                        })
-
-                        // create shapes for carBody and wheelBodies
-                        const carShape = RAPIER.ColliderDesc.convexHull(new Float32Array(positions)).setMass(1).setRestitution(0.5)
-                        const wheelBLShape = RAPIER.ColliderDesc.cylinder(0.1, 0.3)
-                            .setRotation(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), -Math.PI / 2))
-                            .setTranslation(-0.2, 0, 0)
-                            .setRestitution(0.5)
-                        const wheelBRShape = RAPIER.ColliderDesc.cylinder(0.1, 0.3)
-                            .setRotation(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 2))
-                            .setTranslation(0.2, 0, 0)
-                            .setRestitution(0.5)
-                        const wheelFLShape = RAPIER.ColliderDesc.cylinder(0.1, 0.3)
-                            .setRotation(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 2))
-                            .setTranslation(-0.2, 0, 0)
-                            .setRestitution(0.5)
-                        const wheelFRShape = RAPIER.ColliderDesc.cylinder(0.1, 0.3)
-                            .setRotation(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 2))
-                            .setTranslation(0.2, 0, 0)
-                            .setRestitution(0.5)
-
-                        // create world collider
-                        world.createCollider(carShape, carBody)
-                        world.createCollider(wheelBLShape, wheelBLBody)
-                        world.createCollider(wheelBRShape, wheelBRBody)
-                        world.createCollider(wheelFLShape, wheelFLBody)
-                        world.createCollider(wheelFRShape, wheelFRBody)
-
-                        // attach wheels to car using Rapier revolute joints
-                        world.createImpulseJoint(
-                            RAPIER.JointData.revolute(new RAPIER.Vector3(-0.55, 0, 0.63), new RAPIER.Vector3(0, 0, 0), new RAPIER.Vector3(-1, 0, 0)),
-                            carBody,
-                            wheelBLBody,
-                            true
-                        )
-                        world.createImpulseJoint(
-                            RAPIER.JointData.revolute(new RAPIER.Vector3(0.55, 0, 0.63), new RAPIER.Vector3(0, 0, 0), new RAPIER.Vector3(1, 0, 0)),
-                            carBody,
-                            wheelBRBody,
-                            true
-                        )
-                        world.createImpulseJoint(
-                            RAPIER.JointData.revolute(new RAPIER.Vector3(-0.55, 0, -0.63), new RAPIER.Vector3(0, 0, 0), new RAPIER.Vector3(-1, 0, 0)),
-                            carBody,
-                            wheelFLBody,
-                            true
-                        )
-                        world.createImpulseJoint(
-                            RAPIER.JointData.revolute(new RAPIER.Vector3(0.55, 0, -0.63), new RAPIER.Vector3(0, 0, 0), new RAPIER.Vector3(1, 0, 0)),
-                            carBody,
-                            wheelFRBody,
-                            true
-                        )
-
-                        // update local dynamicBodies so mesh positions and quaternions are updated with the physics world info
-                        this.dynamicBodies.push([carMesh, carBody])
-                        this.dynamicBodies.push([wheelBLMesh, wheelBLBody])
-                        this.dynamicBodies.push([wheelBRMesh, wheelBRBody])
-                        this.dynamicBodies.push([wheelFLMesh, wheelFLBody])
-                        this.dynamicBodies.push([wheelFRMesh, wheelFRBody])
-                    })
-                }
-
-                update() {
-                    for (let i = 0, n = this.dynamicBodies.length; i < n; i++) {
-                        this.dynamicBodies[i][0].position.copy(this.dynamicBodies[i][1].translation())
-                        this.dynamicBodies[i][0].quaternion.copy(this.dynamicBodies[i][1].rotation())
-                    }
-                }
-            }
-            */
 
             await RAPIER.init() // This line is only needed if using the compat version
             const gravity = new RAPIER.Vector3(0.0, -9.81, 0.0)
@@ -236,10 +100,6 @@
                 camera.updateProjectionMatrix()
                 renderer.setSize(window.innerWidth, window.innerHeight)
             })
-
-            const controls = new OrbitControls(camera, renderer.domElement)
-            controls.enableDamping = true
-            controls.target.y = 1
 
             // Cuboid Collider
             const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial())
@@ -315,8 +175,6 @@
             })
             */
 
-            // const car = new Car(scene, [0, 2, 0])
-
             const raycaster = new THREE.Raycaster()
             const mouse = new THREE.Vector2()
 
@@ -363,11 +221,9 @@
                     dynamicBodies[i][0].quaternion.copy(dynamicBodies[i][1].rotation())
                 }
 
-                // car.update()
-
                 rapierDebugRenderer.update()
 
-                controls.update()
+                // controls.update()
 
                 renderer.render(scene, camera)
 
