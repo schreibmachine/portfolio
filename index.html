@@ -85,20 +85,21 @@
             light2.position.set(-2.5, 5, 5)
             scene.add(light2)
 
+            const framePadding = 0.1
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
             camera.position.set(0, 2, 5)
 
             const renderer = new THREE.WebGLRenderer({ antialias: true })
-            renderer.setSize(window.innerWidth, window.innerHeight)
+            renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
             renderer.shadowMap.enabled = true
             renderer.shadowMap.type = THREE.VSMShadowMap
             document.body.appendChild(renderer.domElement)
             renderer.domElement.id = 'myCoolRenderer'
 
             window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight
+                camera.aspect = window.innerWidth / window.innerHeight  
                 camera.updateProjectionMatrix()
-                renderer.setSize(window.innerWidth, window.innerHeight)
+                renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
             })
 
             // Cuboid Collider
@@ -195,8 +196,8 @@
                 }
             })
 
-            const stats = new Stats()
-            document.body.appendChild(stats.dom)
+            // const stats = new Stats()
+            // document.body.appendChild(stats.dom)
 
             const gui = new GUI()
             gui.add(rapierDebugRenderer, 'enabled').name('Rapier Degug Renderer')
@@ -221,13 +222,13 @@
                     dynamicBodies[i][0].quaternion.copy(dynamicBodies[i][1].rotation())
                 }
 
-                rapierDebugRenderer.update()
+                // rapierDebugRenderer.update()
 
                 // controls.update()
 
                 renderer.render(scene, camera)
 
-                stats.update()
+                // stats.update().
             }
 
             animate()
