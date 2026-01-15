@@ -26,9 +26,11 @@
         </script>
     </head>
     <body>
+        <img id= "star1" src="img/star_red.PNG" class="rotate linear infinite" width="150" height="150" position = 'absolute' />
         <h1>VI SCHREIBER</h1>
         <h2>PORTFOLIO WEBSITE</h2>
-        <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+        <!-- <button type="button" onclick="alert('Hello world!')">Click Me!</button> -->
+        <button id="starButton"> Click me for stars! </button>
         <script type="module">
             import * as THREE from 'three'
             // import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
@@ -37,6 +39,30 @@
             import Stats from 'three/addons/libs/stats.module.js'
             import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
             import RAPIER from '@dimforge/rapier3d-compat'
+
+            // background
+            function show_image(src, width, height, alt) {
+                var img = document.createElement("img");
+                img.src = src;
+                img.class = "rotate linear infinite";
+                img.width = width;
+                img.height = height;
+                img.alt = alt;
+                
+                // set the position
+                img.style.position = 'absolute';
+                img.style.top = document.body.clientHeight * Math.random() + 'px';
+                img.style.left = document.body.clientWidth * Math.random() + 'px';
+
+                document.body.appendChild(img);
+            }
+            document.getElementById('starButton').addEventListener('click', () =>
+                show_image("img/star_blue.PNG", 200, 200, "a hand-drawn blue star"),
+                // show_image("img/star_red.PNG", 200, 200, "a hand-drawn red star"),
+                // show_image("img/star_yellow.PNG", 200, 200, "a hand-drawn yellow star")
+            );
+            document.getElementById('star1').style.top = document.body.clientHeight * Math.random() + 'px';
+            document.getElementById('star1').style.left = document.body.clientHeight * Math.random() + 'px';
 
             class RapierDebugRenderer {
                 mesh
@@ -232,6 +258,9 @@
             }
 
             animate()
+            
         </script>
+
+        <!-- background -->
     </body>
 </html>

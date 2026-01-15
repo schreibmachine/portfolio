@@ -1,5 +1,7 @@
 body {
-  background-color: #52e368
+  background-color: #52e368;
+  height: 100vh;
+  width: 100vh;
 }
 
 h1 {
@@ -89,3 +91,46 @@ p {
 {
     color: #f9f871
 }
+
+/* for the background rotation:  */
+
+.rotate {
+  animation: rotation 15s;
+}
+
+.linear {
+  animation-timing-function: linear;
+}
+
+.infinite {
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+
+
+
+/*
+
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+*/
