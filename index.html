@@ -26,7 +26,7 @@
         </script>
     </head>
     <body>
-        <img id= "star1" src="img/star_red.PNG" class="rotate linear infinite" width="150" height="150" position = 'absolute' />
+        <img id= "star1" src="img/star_blue.PNG" class="rotate linear infinite" width="150" height="150" position = 'absolute' />
         <h1>VI SCHREIBER</h1>
         <h2>PORTFOLIO WEBSITE</h2>
         <!-- <button type="button" onclick="alert('Hello world!')">Click Me!</button> -->
@@ -44,7 +44,7 @@
             function show_image(src, width, height, alt) {
                 var img = document.createElement("img");
                 img.src = src;
-                img.class = "rotate linear infinite";
+                img.style.class = "rotate linear infinite";
                 img.width = width;
                 img.height = height;
                 img.alt = alt;
@@ -116,7 +116,14 @@
             camera.position.set(0, 2, 5)
 
             const renderer = new THREE.WebGLRenderer({ antialias: true })
-            renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
+
+            function clamp(num, min, max) {
+                return Math.min(Math.max(num, min), max);
+            }
+            const clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
+            const clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
+            renderer.setSize(clampedWidth, clampedHeight)
+
             renderer.shadowMap.enabled = true
             renderer.shadowMap.type = THREE.VSMShadowMap
             document.body.appendChild(renderer.domElement)
@@ -132,7 +139,7 @@
             const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial())
             cubeMesh.castShadow = true
             scene.add(cubeMesh)
-            const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(-5, 5, 0).setCanSleep(false))
+            const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(-4, 5, 0).setCanSleep(false))
             const cubeShape = RAPIER.ColliderDesc.cuboid(0.5, 0.5, 0.5).setMass(1).setRestitution(0.5)
             world.createCollider(cubeShape, cubeBody)
             dynamicBodies.push([cubeMesh, cubeBody])
@@ -169,7 +176,7 @@
             const torusKnotMesh = new THREE.Mesh(new THREE.TorusKnotGeometry(), new THREE.MeshNormalMaterial())
             torusKnotMesh.castShadow = true
             scene.add(torusKnotMesh)
-            const torusKnotBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(5, 5, 0))
+            const torusKnotBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(3, 7, 0))
             const vertices = new Float32Array(torusKnotMesh.geometry.attributes.position.array)
             let indices = new Uint32Array(torusKnotMesh.geometry.index.array)
             const torusKnotShape = RAPIER.ColliderDesc.trimesh(vertices, indices).setMass(1).setRestitution(0.5)
@@ -177,13 +184,45 @@
             dynamicBodies.push([torusKnotMesh, torusKnotBody])
 
             // the floor (using a cuboid)
-            const floorMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 1, 50), new THREE.MeshPhongMaterial())
+            const floorMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 1, 50), new THREE.MeshPhongMaterial({color: '#36e817', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             floorMesh.receiveShadow = true
             floorMesh.position.y = -1
             scene.add(floorMesh)
             const floorBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, -1, 0))
             const floorShape = RAPIER.ColliderDesc.cuboid(25, 0.5, 25)
             world.createCollider(floorShape, floorBody)
+
+            // the left side (using a cuboid) - based on floor
+            const sideLMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 50, 50), new THREE.MeshPhongMaterial({color: '#da70b8', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
+            sideLMesh.receiveShadow = true
+            sideLMesh.position.y = -1
+            sideLMesh.position.x = -5
+            scene.add(sideLMesh)
+            const sideLBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(-5, -1, 0))
+            const sideLShape = RAPIER.ColliderDesc.cuboid(0.5, 25, 25)
+            world.createCollider(sideLShape, sideLBody)
+
+            // the right side (using a cuboid) - based on floor
+            const sideRMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 50, 50), new THREE.MeshPhongMaterial({color: '#da70b8', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
+            sideRMesh.receiveShadow = true
+            sideRMesh.position.y = -1
+            sideRMesh.position.x = 5
+            scene.add(sideRMesh)
+            const sideRBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(5, -1, 0))
+            const sideRShape = RAPIER.ColliderDesc.cuboid(0.5, 25, 25)
+            world.createCollider(sideRShape, sideRBody)
+
+            
+            // the back side (using a cuboid) - based on floor
+            const sideBMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 1), new THREE.MeshPhongMaterial({color: 'black', emissive: '#060673', shininess: '50'}))
+            sideBMesh.receiveShadow = true
+            sideBMesh.position.z = -15
+            scene.add(sideBMesh)
+            const sideBBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, -15, 0))
+            const sideBShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
+            world.createCollider(sideBShape, sideBBody)
+            
+
 
             /*
             // creating a shape from a loaded geometry. (Using OBJLoader)
