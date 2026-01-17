@@ -44,7 +44,6 @@
             function show_image(src, width, height, alt) {
                 var img = document.createElement("img");
                 img.src = src;
-                img.style.class = "rotate linear infinite";
                 img.width = width;
                 img.height = height;
                 img.alt = alt;
@@ -57,12 +56,13 @@
                 document.body.appendChild(img);
             }
             document.getElementById('starButton').addEventListener('click', () =>
-                show_image("img/star_blue.PNG", 200, 200, "a hand-drawn blue star"),
+                show_image("img/star_blue.PNG", 100, 100, "a hand-drawn blue star"),
                 // show_image("img/star_red.PNG", 200, 200, "a hand-drawn red star"),
                 // show_image("img/star_yellow.PNG", 200, 200, "a hand-drawn yellow star")
             );
-            document.getElementById('star1').style.top = document.body.clientHeight * Math.random() + 'px';
-            document.getElementById('star1').style.left = document.body.clientHeight * Math.random() + 'px';
+            // document.getElementById('star1').style.top = document.body.clientHeight * Math.random() + 'px';
+            // document.getElementById('star1').style.left = document.body.clientHeight * Math.random() + 'px';
+            // document.getElementById('star1').style.class = "rotate linear infinite";
 
             class RapierDebugRenderer {
                 mesh
@@ -93,6 +93,8 @@
             const gravity = new RAPIER.Vector3(0.0, -9.81, 0.0)
             const world = new RAPIER.World(gravity)
             const dynamicBodies = []
+
+            const cubeCounter = 0
 
             const scene = new THREE.Scene()
 
@@ -135,6 +137,10 @@
                 renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
             })
 
+            function createCube(name) {
+                const cubeCounter =+ 1
+                console.log('cubeCounter: ' + cubeCounter)
+            }
             // Cuboid Collider
             const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial())
             cubeMesh.castShadow = true
@@ -144,6 +150,7 @@
             world.createCollider(cubeShape, cubeBody)
             dynamicBodies.push([cubeMesh, cubeBody])
 
+            /*
             // Ball Collider
             const sphereMesh = new THREE.Mesh(new THREE.SphereGeometry(), new THREE.MeshNormalMaterial())
             sphereMesh.castShadow = true
@@ -176,12 +183,13 @@
             const torusKnotMesh = new THREE.Mesh(new THREE.TorusKnotGeometry(), new THREE.MeshNormalMaterial())
             torusKnotMesh.castShadow = true
             scene.add(torusKnotMesh)
-            const torusKnotBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(3, 7, 0))
+            const torusKnotBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(2, 10, 0))
             const vertices = new Float32Array(torusKnotMesh.geometry.attributes.position.array)
             let indices = new Uint32Array(torusKnotMesh.geometry.index.array)
             const torusKnotShape = RAPIER.ColliderDesc.trimesh(vertices, indices).setMass(1).setRestitution(0.5)
             world.createCollider(torusKnotShape, torusKnotBody)
             dynamicBodies.push([torusKnotMesh, torusKnotBody])
+            */
 
             // the floor (using a cuboid)
             const floorMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 1, 50), new THREE.MeshPhongMaterial({color: '#36e817', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
@@ -286,6 +294,8 @@
                     dynamicBodies[i][0].position.copy(dynamicBodies[i][1].translation())
                     dynamicBodies[i][0].quaternion.copy(dynamicBodies[i][1].rotation())
                 }
+
+                // TODO: test cubeCounter function here !!! ------------------------------------------ TODO                
 
                 // rapierDebugRenderer.update()
 
