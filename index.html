@@ -56,7 +56,8 @@
                 document.body.appendChild(img);
             }
             document.getElementById('starButton').addEventListener('click', () =>
-                show_image("img/star_blue.PNG", 100, 100, "a hand-drawn blue star"),
+                createCube('testKollege')
+                // show_image("img/star_blue.PNG", 100, 100, "a hand-drawn blue star"),
                 // show_image("img/star_red.PNG", 200, 200, "a hand-drawn red star"),
                 // show_image("img/star_yellow.PNG", 200, 200, "a hand-drawn yellow star")
             );
@@ -94,7 +95,7 @@
             const world = new RAPIER.World(gravity)
             const dynamicBodies = []
 
-            const cubeCounter = 0
+            let cubeCounter = 0
 
             const scene = new THREE.Scene()
 
@@ -122,8 +123,8 @@
             function clamp(num, min, max) {
                 return Math.min(Math.max(num, min), max);
             }
-            const clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
-            const clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
+            let clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
+            let clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
             renderer.setSize(clampedWidth, clampedHeight)
 
             renderer.shadowMap.enabled = true
@@ -134,32 +135,40 @@
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight  
                 camera.updateProjectionMatrix()
-                renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
+                clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
+                clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
+                renderer.setSize(clampedWidth, clampedHeight)
+                // renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
             })
 
             function createCube(name) {
-                const cubeCounter =+ 1
+                cubeCounter++
                 console.log('cubeCounter: ' + cubeCounter)
+
+                // Cuboid Collider
+                const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial())
+                cubeMesh.castShadow = true
+                scene.add(cubeMesh)
+                const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(0, 8, 0).setCanSleep(false))
+                const cubeShape = RAPIER.ColliderDesc.cuboid(0.5, 0.5, 0.5).setMass(1).setRestitution(0.5)
+                world.createCollider(cubeShape, cubeBody)
+                dynamicBodies.push([cubeMesh, cubeBody])
             }
-            // Cuboid Collider
-            const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial())
-            cubeMesh.castShadow = true
-            scene.add(cubeMesh)
-            const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(-4, 5, 0).setCanSleep(false))
-            const cubeShape = RAPIER.ColliderDesc.cuboid(0.5, 0.5, 0.5).setMass(1).setRestitution(0.5)
-            world.createCollider(cubeShape, cubeBody)
-            dynamicBodies.push([cubeMesh, cubeBody])
 
+            function createBall(name) {
+
+                // Ball Collider
+                const sphereMesh = new THREE.Mesh(new THREE.SphereGeometry(), new THREE.MeshNormalMaterial())
+                sphereMesh.castShadow = true
+                scene.add(sphereMesh)
+                const sphereBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(-2.5, 5, 0).setCanSleep(false))
+                const sphereShape = RAPIER.ColliderDesc.ball(1).setMass(1).setRestitution(0.5)
+                world.createCollider(sphereShape, sphereBody)
+                dynamicBodies.push([sphereMesh, sphereBody])
+            }
+
+            
             /*
-            // Ball Collider
-            const sphereMesh = new THREE.Mesh(new THREE.SphereGeometry(), new THREE.MeshNormalMaterial())
-            sphereMesh.castShadow = true
-            scene.add(sphereMesh)
-            const sphereBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(-2.5, 5, 0).setCanSleep(false))
-            const sphereShape = RAPIER.ColliderDesc.ball(1).setMass(1).setRestitution(0.5)
-            world.createCollider(sphereShape, sphereBody)
-            dynamicBodies.push([sphereMesh, sphereBody])
-
             // Cylinder Collider
             const cylinderMesh = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 2, 16), new THREE.MeshNormalMaterial())
             cylinderMesh.castShadow = true
@@ -191,6 +200,16 @@
             dynamicBodies.push([torusKnotMesh, torusKnotBody])
             */
 
+            // // the pachinko obstacle (using a cuboid)
+            // const pachinkMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshPhongMaterial({color: 'red'}))
+            // pachinkMesh.receiveShadow = false
+            // pachinkMesh.rotation.z = 180
+            // pachinkMesh.position.y = 4
+            // scene.add(pachinkMesh)
+            // const pachinkoBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(pachinkMesh.position.x, pachinkMesh.position.y, pachinkMesh.position.z).setRotation(pachinkMesh.rotation.x, pachinkMesh.rotation.y, pachinkMesh.rotation.z))
+            // const pachinkoShape = RAPIER.ColliderDesc.cuboid(0.5, 0.5, 0.5)
+            // world.createCollider(pachinkoShape, pachinkoBody)
+
             // the floor (using a cuboid)
             const floorMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 1, 50), new THREE.MeshPhongMaterial({color: '#36e817', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             floorMesh.receiveShadow = true
@@ -204,33 +223,40 @@
             const sideLMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 50, 50), new THREE.MeshPhongMaterial({color: '#da70b8', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             sideLMesh.receiveShadow = true
             sideLMesh.position.y = -1
-            sideLMesh.position.x = -5
+            sideLMesh.position.x = -4
             scene.add(sideLMesh)
-            const sideLBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(-5, -1, 0))
+            const sideLBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(-4, -1, 0))
             const sideLShape = RAPIER.ColliderDesc.cuboid(0.5, 25, 25)
             world.createCollider(sideLShape, sideLBody)
 
-            // the right side (using a cuboid) - based on floor
+            // the RIGHT side (using a cuboid)
             const sideRMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 50, 50), new THREE.MeshPhongMaterial({color: '#da70b8', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             sideRMesh.receiveShadow = true
             sideRMesh.position.y = -1
-            sideRMesh.position.x = 5
+            sideRMesh.position.x = 4
             scene.add(sideRMesh)
-            const sideRBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(5, -1, 0))
+            const sideRBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(4, -1, 0))
             const sideRShape = RAPIER.ColliderDesc.cuboid(0.5, 25, 25)
             world.createCollider(sideRShape, sideRBody)
 
             
-            // the back side (using a cuboid) - based on floor
+            // the BACK side (using a cuboid)
             const sideBMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 1), new THREE.MeshPhongMaterial({color: 'black', emissive: '#060673', shininess: '50'}))
             sideBMesh.receiveShadow = true
-            sideBMesh.position.z = -15
+            sideBMesh.position.z = -1
             scene.add(sideBMesh)
-            const sideBBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, -15, 0))
+            const sideBBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, -1))
             const sideBShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
             world.createCollider(sideBShape, sideBBody)
             
-
+            // the FRONT side (using a cuboid) - invisible
+            // const frontalMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 1), new THREE.MeshPhongMaterial({color: 'red', opacity: '100' }))
+            // frontalMesh.receiveShadow = false
+            // frontalMesh.position.z = 4
+            // scene.add(frontalMesh)
+            const frontalBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 1))
+            const frontalShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
+            world.createCollider(frontalShape, frontalBody)
 
             /*
             // creating a shape from a loaded geometry. (Using OBJLoader)
