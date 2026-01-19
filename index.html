@@ -6,12 +6,6 @@
         <title>Portfolio Vi Schreiber</title>
         <meta name="description" content="Using Rapier from CDN" />
         <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-        <style>
-            body {
-                overflow: hidden;
-                margin: 0px;
-            }
-        </style>
         
         <!-- instead of cannon.js, we are now using Rapier on top of THREE -->
         <script type="importmap">
@@ -26,11 +20,15 @@
         </script>
     </head>
     <body>
-        <img id= "star1" src="img/star_blue.PNG" class="rotate linear infinite" width="150" height="150" position = 'absolute' />
-        <h1>VI SCHREIBER</h1>
-        <h2>PORTFOLIO WEBSITE</h2>
-        <!-- <button type="button" onclick="alert('Hello world!')">Click Me!</button> -->
-        <button id="starButton"> Click me for stars! </button>
+        <div class="main" id="section1">
+            <img id= "star1" src="img/star_blue.PNG" class="rotate linear infinite" width="150" height="150" position = 'absolute' />
+            <h1>VI SCHREIBER</h1>
+            <h2>PORTFOLIO WEBSITE</h2>
+            <!-- <button type="button" onclick="alert('Hello world!')">Click Me!</button> -->
+            <button id="starButton"> click for cubes! </button>
+            <!-- <a id="btnLebenslauf" href="#section2"> Lebenslauf </button> -->
+            <a href="#section2">About Me</a>
+        </div>
         <script type="module">
             import * as THREE from 'three'
             // import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
@@ -193,15 +191,6 @@
 
             
             /*
-            // Cylinder Collider
-            const cylinderMesh = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 2, 16), new THREE.MeshNormalMaterial())
-            cylinderMesh.castShadow = true
-            scene.add(cylinderMesh)
-            const cylinderBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(0, 5, 0).setCanSleep(false))
-            const cylinderShape = RAPIER.ColliderDesc.cylinder(1, 1).setMass(1).setRestitution(0.5)
-            world.createCollider(cylinderShape, cylinderBody)
-            dynamicBodies.push([cylinderMesh, cylinderBody])
-
             // ConvexHull Collider
             const icosahedronMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 0), new THREE.MeshNormalMaterial())
             icosahedronMesh.castShadow = true
@@ -223,16 +212,6 @@
             world.createCollider(torusKnotShape, torusKnotBody)
             dynamicBodies.push([torusKnotMesh, torusKnotBody])
             */
-
-            // // the pachinko obstacle (using a cuboid)
-            // const pachinkMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshPhongMaterial({color: 'red'}))
-            // pachinkMesh.receiveShadow = false
-            // pachinkMesh.rotation.z = 180
-            // pachinkMesh.position.y = 4
-            // scene.add(pachinkMesh)
-            // const pachinkoBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(pachinkMesh.position.x, pachinkMesh.position.y, pachinkMesh.position.z).setRotation(pachinkMesh.rotation.x, pachinkMesh.rotation.y, pachinkMesh.rotation.z))
-            // const pachinkoShape = RAPIER.ColliderDesc.cuboid(0.5, 0.5, 0.5)
-            // world.createCollider(pachinkoShape, pachinkoBody)
 
             // the floor (using a cuboid)
             const floorMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 1, 50), new THREE.MeshPhongMaterial({color: '#36e817', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
@@ -273,11 +252,7 @@
             const sideBShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
             world.createCollider(sideBShape, sideBBody)
             
-            // the FRONT side (using a cuboid) - invisible
-            // const frontalMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 1), new THREE.MeshPhongMaterial({color: 'red', opacity: '100' }))
-            // frontalMesh.receiveShadow = false
-            // frontalMesh.position.z = 4
-            // scene.add(frontalMesh)
+            // the FRONT side (using a cuboid) - invisible(no mat)
             const frontalBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 3.25))
             const frontalShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
             world.createCollider(frontalShape, frontalBody)
@@ -345,18 +320,17 @@
                     dynamicBodies[i][0].quaternion.copy(dynamicBodies[i][1].rotation())
                 }
 
-                // TODO: test cubeCounter function here !!! ------------------------------------------ TODO                
-
+                
                 // rapierDebugRenderer.update()
-
+                
                 // controls.update()
-
+                
                 renderer.render(scene, camera)
-
+                
                 // stats.update().
             }
             createCube('theFirst')
-
+                     
             // Will create a new cube every 1.5 seconds (intervalID i needed to kill it when finished)
             intervalID ??= window.setInterval(createCube, 1500);
 
@@ -365,6 +339,17 @@
             
         </script>
 
+        <div class="main" id="section2">
+            <a href="#section1">Click Me to get back up!</a>
+
+            <h1>Hello!</h1>
+            <h2>I am Vi. </h2> 
+            I am currently finishing mz master of arts in creative technologies at the filmuniversitaet KONRAD WOLF.
+
+            This website is currently under construction!
+
+            This section will be the "About Me"
+        </div>
         <!-- background -->
     </body>
 </html>

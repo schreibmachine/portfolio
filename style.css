@@ -4,19 +4,23 @@ html {
 }
 
 #section1 {
-  height: 600px;
-  background-color: pink;
+  height: 100vh;
+  scroll-snap-align: start;
 }
 
 #section2 {
-  height: 600px;
-  background-color: yellow;
-}
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(to bottom, #52e368, #5293e3);
+} 
+
 
 body {
   background-color: #52e368;
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0px;
 }
 
 h1 {
