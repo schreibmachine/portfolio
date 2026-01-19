@@ -96,6 +96,8 @@
             const dynamicBodies = []
 
             let cubeCounter = 0
+            let cubeCounter_offset = 0.0
+            let intervalID
 
             const scene = new THREE.Scene()
 
@@ -160,14 +162,21 @@
                 cubeCounter++
                 console.log('cubeCounter: ' + cubeCounter)
 
+                cubeCounter_offset = cubeCounter % 20
+                // console.log('cubeCounter_offset: ' +  cubeCounter_offset)
+
                 // Cuboid Collider
-                const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial())
+                const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.4, 0.4), new THREE.MeshNormalMaterial())
                 cubeMesh.castShadow = true
                 scene.add(cubeMesh)
-                const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(0, 8, 3).setCanSleep(false))
-                const cubeShape = RAPIER.ColliderDesc.cuboid(0.5, 0.5, 0.5).setMass(1).setRestitution(0.5)
+                const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation((-1 + cubeCounter_offset / 10), 7, 2.5).setCanSleep(false))
+                const cubeShape = RAPIER.ColliderDesc.cuboid(0.2, 0.2, 0.2).setMass(1).setRestitution(0.5)
                 world.createCollider(cubeShape, cubeBody)
                 dynamicBodies.push([cubeMesh, cubeBody])
+
+                if (cubeCounter >= 20) {
+                    clearInterval(intervalID)
+                }
             }
 
             function createBall(name) {
@@ -258,7 +267,7 @@
             // the BACK side (using a cuboid)
             const sideBMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 1), new THREE.MeshPhongMaterial({color: '#da70b8', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             sideBMesh.receiveShadow = true
-            sideBMesh.position.z = 2
+            sideBMesh.position.z = 1.5
             scene.add(sideBMesh)
             const sideBBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(sideBMesh.position.x, sideBMesh.position.y, sideBMesh.position.z))
             const sideBShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
@@ -269,7 +278,7 @@
             // frontalMesh.receiveShadow = false
             // frontalMesh.position.z = 4
             // scene.add(frontalMesh)
-            const frontalBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 4))
+            const frontalBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 3.25))
             const frontalShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
             world.createCollider(frontalShape, frontalBody)
 
@@ -346,6 +355,11 @@
 
                 // stats.update().
             }
+            createCube('theFirst')
+
+            // Will create a new cube every 1.5 seconds (intervalID i needed to kill it when finished)
+            intervalID ??= window.setInterval(createCube, 1500);
+
 
             animate()
             
