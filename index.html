@@ -115,7 +115,8 @@
             scene.add(light2)
 
             const framePadding = 0.1
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
+            // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
+            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 100)
             camera.position.set(0, 2, 5)
 
             const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -125,7 +126,14 @@
             }
             let clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
             let clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
-            renderer.setSize(clampedWidth, clampedHeight)
+            // renderer.setSize(clampedWidth, clampedHeight)
+            //keep renderer square and fit to the smaller window size
+                if (clampedWidth <= clampedHeight) {
+                    renderer.setSize(clampedWidth, clampedWidth)
+                }
+                if (clampedWidth > clampedHeight) {
+                    renderer.setSize(clampedHeight, clampedHeight)
+                }
 
             renderer.shadowMap.enabled = true
             renderer.shadowMap.type = THREE.VSMShadowMap
@@ -133,11 +141,18 @@
             renderer.domElement.id = 'myCoolRenderer'
 
             window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight  
+                camera.aspect = 1 //window.innerWidth / window.innerHeight  
                 camera.updateProjectionMatrix()
                 clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
                 clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
-                renderer.setSize(clampedWidth, clampedHeight)
+
+                //keep renderer square and fit to the smaller window size
+                if (clampedWidth <= clampedHeight) {
+                    renderer.setSize(clampedWidth, clampedWidth)
+                }
+                if (clampedWidth > clampedHeight) {
+                    renderer.setSize(clampedHeight, clampedHeight)
+                }
                 // renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
             })
 
@@ -149,7 +164,7 @@
                 const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial())
                 cubeMesh.castShadow = true
                 scene.add(cubeMesh)
-                const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(0, 8, 0).setCanSleep(false))
+                const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(0, 8, 3).setCanSleep(false))
                 const cubeShape = RAPIER.ColliderDesc.cuboid(0.5, 0.5, 0.5).setMass(1).setRestitution(0.5)
                 world.createCollider(cubeShape, cubeBody)
                 dynamicBodies.push([cubeMesh, cubeBody])
@@ -213,19 +228,19 @@
             // the floor (using a cuboid)
             const floorMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 1, 50), new THREE.MeshPhongMaterial({color: '#36e817', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             floorMesh.receiveShadow = true
-            floorMesh.position.y = -1
+            floorMesh.position.y = 0
             scene.add(floorMesh)
-            const floorBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, -1, 0))
+            const floorBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, floorMesh.position.y, 0))
             const floorShape = RAPIER.ColliderDesc.cuboid(25, 0.5, 25)
             world.createCollider(floorShape, floorBody)
 
-            // the left side (using a cuboid) - based on floor
+            // the left side (using a cuboid)
             const sideLMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 50, 50), new THREE.MeshPhongMaterial({color: '#da70b8', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             sideLMesh.receiveShadow = true
             sideLMesh.position.y = -1
-            sideLMesh.position.x = -4
+            sideLMesh.position.x = -2
             scene.add(sideLMesh)
-            const sideLBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(-4, -1, 0))
+            const sideLBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(sideLMesh.position.x, sideLMesh.position.y, sideLMesh.position.z))
             const sideLShape = RAPIER.ColliderDesc.cuboid(0.5, 25, 25)
             world.createCollider(sideLShape, sideLBody)
 
@@ -233,19 +248,19 @@
             const sideRMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 50, 50), new THREE.MeshPhongMaterial({color: '#da70b8', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             sideRMesh.receiveShadow = true
             sideRMesh.position.y = -1
-            sideRMesh.position.x = 4
+            sideRMesh.position.x = 2
             scene.add(sideRMesh)
-            const sideRBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(4, -1, 0))
+            const sideRBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(sideRMesh.position.x, sideRMesh.position.y, sideRMesh.position.z))
             const sideRShape = RAPIER.ColliderDesc.cuboid(0.5, 25, 25)
             world.createCollider(sideRShape, sideRBody)
 
             
             // the BACK side (using a cuboid)
-            const sideBMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 1), new THREE.MeshPhongMaterial({color: 'black', emissive: '#060673', shininess: '50'}))
+            const sideBMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 1), new THREE.MeshPhongMaterial({color: '#da70b8', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             sideBMesh.receiveShadow = true
-            sideBMesh.position.z = -1
+            sideBMesh.position.z = 2
             scene.add(sideBMesh)
-            const sideBBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, -1))
+            const sideBBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(sideBMesh.position.x, sideBMesh.position.y, sideBMesh.position.z))
             const sideBShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
             world.createCollider(sideBShape, sideBBody)
             
@@ -254,7 +269,7 @@
             // frontalMesh.receiveShadow = false
             // frontalMesh.position.z = 4
             // scene.add(frontalMesh)
-            const frontalBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 1))
+            const frontalBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 4))
             const frontalShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
             world.createCollider(frontalShape, frontalBody)
 
