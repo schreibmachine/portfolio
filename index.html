@@ -26,13 +26,13 @@
             <h1>VI SCHREIBER</h1>
             <h2>PORTFOLIO WEBSITE</h2>
             <br> 
-            <button id="starButton"style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">click for cubes!</button>
+            <!-- <button id="starButton"style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">click for cubes!</button> -->
             <br>
             <a href="#section2"style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">About Me</a>
             <br>
             
             <!-- popups! -->
-            <button id="openPopup" style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">Open Popup</button>
+            <!-- <button id="openPopup" style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">Open Popup</button> -->
             <div id="popup" class="popup">
                 <div class="popup-content">
                     <h2 id="popTitle">Popup Title</h2>
@@ -66,12 +66,12 @@
 
                 document.body.appendChild(img);
             }
-            document.getElementById('starButton').addEventListener('click', () =>
-                createCube('testKollege')
-                // show_image("img/star_blue.PNG", 100, 100, "a hand-drawn blue star"),
-                // show_image("img/star_red.PNG", 200, 200, "a hand-drawn red star"),
-                // show_image("img/star_yellow.PNG", 200, 200, "a hand-drawn yellow star")
-            );
+            // document.getElementById('starButton').addEventListener('click', () =>
+            //     createCube('testKollege')
+            //     // show_image("img/star_blue.PNG", 100, 100, "a hand-drawn blue star"),
+            //     // show_image("img/star_red.PNG", 200, 200, "a hand-drawn red star"),
+            //     // show_image("img/star_yellow.PNG", 200, 200, "a hand-drawn yellow star")
+            // );
             // document.getElementById('star1').style.top = document.body.clientHeight * Math.random() + 'px';
             // document.getElementById('star1').style.left = document.body.clientHeight * Math.random() + 'px';
             // document.getElementById('star1').style.class = "rotate linear infinite";
@@ -79,13 +79,13 @@
 
             
             // popup logic -------------------------------------------------------------------------------
-            const openPopup = document.getElementById('openPopup');
+            // const openPopup = document.getElementById('openPopup');
             const closePopup = document.getElementById('closePopup');
             const popup = document.getElementById('popup');
 
-            openPopup.addEventListener('click', () => {
-                popup.style.display = 'flex';
-            });
+            // openPopup.addEventListener('click', () => {
+            //     popup.style.display = 'flex';
+            // });
 
             closePopup.addEventListener('click', () => {
                 popup.style.display = 'none';
@@ -114,6 +114,10 @@
                 .then(data => {
                     projectsArray = data; // save the array for later
                     console.log(projectsArray.length + ' projects loaded. Details: ', projectsArray);
+
+                    // Will create a new cube every n milliseconds (intervalID needed to kill it when finished)
+                    intervalID ??= window.setInterval(createCube, 1000);
+
                 })
                 .catch(err => console.error('Failed to load projects.json:', err));
             });
@@ -215,31 +219,67 @@
                 // renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
             })
 
-            function createTextTexture(text, width = 256, height = 256) {
+            function createTextTexture(text, width = 256, height = 256, padding = 10) {
                 const canvas = document.createElement('canvas');
                 canvas.width = width;
                 canvas.height = height;
                 const ctx = canvas.getContext('2d');
 
                 // Background (optional)
-                ctx.fillStyle = 'white';
+                ctx.fillStyle = 'red';
                 ctx.fillRect(0, 0, width, height);
 
-                // Text style
                 ctx.fillStyle = 'black';
-                ctx.font = 'bold 48px Arial';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
+                
+                // Function to split text into lines that fit the canvas
+                function wrapText(ctx, text, maxWidth) {
+                    const words = text.split(' ');
+                    const lines = [];
+                    let line = '';
 
-                // Draw the text
-                ctx.fillText(text, width / 2, height / 2);
+                    for (let word of words) {
+                        const testLine = line + (line ? ' ' : '') + word;
+                        const metrics = ctx.measureText(testLine);
+                        if (metrics.width > maxWidth && line) {
+                            lines.push(line);
+                            line = word;
+                        } else {
+                            line = testLine;
+                        }
+                    }
+                    lines.push(line);
+                    return lines;
+                }
 
-                // Create a THREE texture from the canvas
+                // Start with a big font size and shrink until it fits
+                let fontSize = 80;
+                ctx.font = `bold ${fontSize}px Arial`;
+
+                let lines = wrapText(ctx, text, width - 2 * padding);
+
+                while (lines.length * fontSize > height - 2 * padding && fontSize > 10) {
+                    fontSize -= 2;
+                    ctx.font = `bold ${fontSize}px Arial`;
+                    lines = wrapText(ctx, text, width - 2 * padding);
+                }
+
+                // Draw the lines centered vertically
+                const lineHeight = fontSize * 1.2;
+                const totalHeight = lines.length * lineHeight;
+                let y = height / 2 - totalHeight / 2 + lineHeight / 2;
+
+                for (let line of lines) {
+                    ctx.fillText(line, width / 2, y);
+                    y += lineHeight;
+                }
+
                 const texture = new THREE.CanvasTexture(canvas);
                 texture.needsUpdate = true;
-
                 return texture;
             }
+
 
             function createCube() {
                 cubeCounter++;
@@ -251,14 +291,7 @@
                 const textTexture = createTextTexture(projectTitle);
 
                 // Use MeshBasicMaterial so lighting doesn't affect visibility
-                const materials = [
-                    new THREE.MeshBasicMaterial({ map: textTexture }), // front face with text
-                    new THREE.MeshBasicMaterial({ map: textTexture }), // other faces (or copy texture to all faces)
-                    new THREE.MeshBasicMaterial({ map: textTexture }),
-                    new THREE.MeshBasicMaterial({ map: textTexture }),
-                    new THREE.MeshBasicMaterial({ map: textTexture }),
-                    new THREE.MeshBasicMaterial({ map: textTexture })
-                ];
+                const materials = Array(6).fill(new THREE.MeshBasicMaterial({ map: textTexture }));
 
                 const cubeMesh = new THREE.Mesh(
                     new THREE.BoxGeometry(0.4, 0.4, 0.4),
@@ -472,11 +505,6 @@
                 
                 // stats.update().
             }
-            createCube('theFirst')
-                     
-            // Will create a new cube every n milliseconds (intervalID needed to kill it when finished)
-            intervalID ??= window.setInterval(createCube, 1000);
-
 
             animate()
             
