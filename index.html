@@ -97,7 +97,7 @@
                 }
             });
 
-            fetch('projects.json')
+            fetch('https://raw.githubusercontent.com/schreibmachine/portfolio/refs/heads/main/projects.json')
             .then(res => res.json())
             .then(data => {
                 console.log(data[0].title); // data is now an array of projects
