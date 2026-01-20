@@ -97,11 +97,25 @@
                 }
             });
 
+            // fetch('https://raw.githubusercontent.com/schreibmachine/portfolio/refs/heads/main/projects.json')
+            // .then(res => res.json())
+            // .then(projectsArray => {
+            //     console.log(projectsArray[0].title);
+            //     document.getElementById('popTitle').innerHTML = projectsArray[0].title;
+            //     document.getElementById('popText').innerHTML = projectsArray[0].description;
+            //     console.log("arrray length: " + projectsArray.length)
+            // });
+
+            let projectsArray = []; // stores the JSON once fetched
+
+            window.addEventListener('DOMContentLoaded', () => {
             fetch('https://raw.githubusercontent.com/schreibmachine/portfolio/refs/heads/main/projects.json')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data[0].title); // data is now an array of projects
-                // document.getElementById("popText").innerHTML = [0].description;
+                .then(res => res.json())
+                .then(data => {
+                    projectsArray = data; // save the array for later
+                    console.log(projectsArray.length + ' projects loaded. Details: ', projectsArray);
+                })
+                .catch(err => console.error('Failed to load projects.json:', err));
             });
      
 
@@ -201,25 +215,66 @@
                 // renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
             })
 
+            function createTextTexture(text, width = 256, height = 256) {
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+
+                // Background (optional)
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, width, height);
+
+                // Text style
+                ctx.fillStyle = 'black';
+                ctx.font = 'bold 48px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                // Draw the text
+                ctx.fillText(text, width / 2, height / 2);
+
+                // Create a THREE texture from the canvas
+                const texture = new THREE.CanvasTexture(canvas);
+                texture.needsUpdate = true;
+
+                return texture;
+            }
+
             function createCube() {
                 cubeCounter++;
 
                 const id = `cube_${cubeCounter}`;
 
+                // Create a canvas texture with the project title
+                const projectTitle = projectsArray[cubeCounter-1]?.title || 'Error';
+                const textTexture = createTextTexture(projectTitle);
+
+                // Use MeshBasicMaterial so lighting doesn't affect visibility
+                const materials = [
+                    new THREE.MeshBasicMaterial({ map: textTexture }), // front face with text
+                    new THREE.MeshBasicMaterial({ map: textTexture }), // other faces (or copy texture to all faces)
+                    new THREE.MeshBasicMaterial({ map: textTexture }),
+                    new THREE.MeshBasicMaterial({ map: textTexture }),
+                    new THREE.MeshBasicMaterial({ map: textTexture }),
+                    new THREE.MeshBasicMaterial({ map: textTexture })
+                ];
+
                 const cubeMesh = new THREE.Mesh(
                     new THREE.BoxGeometry(0.4, 0.4, 0.4),
-                    new THREE.MeshNormalMaterial()
+                    materials
                 );
 
-                cubeMesh.name = id;              // THREE identity
-                cubeMesh.userData.body = null;   // bridge slot
+                cubeMesh.name = id;
+                cubeMesh.userData.body = null;  
+                cubeMesh.userData.projectIndex = cubeCounter - 1; // store index for popup
 
                 scene.add(cubeMesh);
 
                 const cubeBody = world.createRigidBody(
                     RAPIER.RigidBodyDesc.dynamic()
-                    .setTranslation(-1 + (cubeCounter % 20) / 10, 7, 2.5)
-                    .setCanSleep(false)
+                        .setTranslation(-1 + (cubeCounter % 20) / 10, 7, 2.5)
+                        .setCanSleep(false)
                 );
 
                 const cubeShape = RAPIER.ColliderDesc
@@ -229,14 +284,15 @@
 
                 world.createCollider(cubeShape, cubeBody);
 
-                cubeMesh.userData.body = cubeBody; // bind body to mesh
+                cubeMesh.userData.body = cubeBody;
 
                 dynamicBodies.push(cubeMesh);
 
-                if (cubeCounter >= 20) {
+                if (cubeCounter >= projectsArray.length) {
                     clearInterval(intervalID);
                 }
             }
+
 
 
             function createBall(name) {
@@ -336,6 +392,7 @@
             })
             */
 
+            // DO STUFF WHEN CLICKING A CUBE -----------------------------------------------------
             const raycaster = new THREE.Raycaster()
             const mouse = new THREE.Vector2()
 
@@ -354,10 +411,24 @@
                 const mesh = intersects[0].object;
                 const body = mesh.userData.body;
 
-                console.log('HIT:', mesh.name);
+                // Find the index of this mesh in dynamicBodies
+                const index = dynamicBodies.indexOf(mesh);
+
+                console.log("Clicked cube index:", index);
+
+                if (index !== -1) {
+                    // Use the same index to access your project data
+                    const project = projectsArray[index];
+
+                    document.getElementById('popTitle').innerHTML = project.title;
+                    document.getElementById('popText').innerHTML = project.description;
+
+                    popup.style.display = 'flex';
+                }
 
                 body.applyImpulse(new RAPIER.Vector3(0, 10, 0), true);
             });
+
 
 
 
