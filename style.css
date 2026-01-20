@@ -17,6 +17,26 @@ html {
 
 } 
 
+.popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  justify-content: center;
+  align-items: left;
+}
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+.popup:target {
+  display: flex;
+}
+
 
 body {
   background-color: #52e368;
@@ -65,7 +85,6 @@ p {
     left: 0;
     right: 0;
     margin:auto;
-    /* z-index: -1; */
     filter: drop-shadow(#52e3cd -5px -5px 2px) drop-shadow(#e35252 5px 5px 2px);
 
 }

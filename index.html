@@ -4,9 +4,10 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Portfolio Vi Schreiber</title>
-        <meta name="description" content="Using Rapier from CDN" />
+        <meta name="description" content="This is the portfolio website from Vi Schreiber" />
         <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
         
+        <script type="text/javascript" src="projects.json"></script>
         <!-- instead of cannon.js, we are now using Rapier on top of THREE -->
         <script type="importmap">
             {
@@ -24,10 +25,22 @@
             <img id= "star1" src="img/star_blue.PNG" class="rotate linear infinite" width="150" height="150" position = 'absolute' />
             <h1>VI SCHREIBER</h1>
             <h2>PORTFOLIO WEBSITE</h2>
-            <!-- <button type="button" onclick="alert('Hello world!')">Click Me!</button> -->
-            <button id="starButton"> click for cubes! </button>
-            <!-- <a id="btnLebenslauf" href="#section2"> Lebenslauf </button> -->
-            <a href="#section2">About Me</a>
+            <br> 
+            <button id="starButton"style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">click for cubes!</button>
+            <br>
+            <a href="#section2"style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">About Me</a>
+            <br>
+            
+            <!-- popups! -->
+            <button id="openPopup" style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">Open Popup</button>
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <h2 id="popTitle">Popup Title</h2>
+                    <p id="popText">This popup is controlled with JavaScript.</p>
+                    <button id="closePopup" style="margin-top: 10px; padding: 5px 10px; background-color: #dc3545; color: #fff; border: none; border-radius: 3px;">Close</button>
+                </div>
+            </div>
+   
         </div>
         <script type="module">
             import * as THREE from 'three'
@@ -38,7 +51,7 @@
             import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
             import RAPIER from '@dimforge/rapier3d-compat'
 
-            // background
+            // background --------------------------------------------------------------------------------
             function show_image(src, width, height, alt) {
                 var img = document.createElement("img");
                 img.src = src;
@@ -62,6 +75,38 @@
             // document.getElementById('star1').style.top = document.body.clientHeight * Math.random() + 'px';
             // document.getElementById('star1').style.left = document.body.clientHeight * Math.random() + 'px';
             // document.getElementById('star1').style.class = "rotate linear infinite";
+            // -------------------------------------------------------------------------------------------
+
+            
+            // popup logic -------------------------------------------------------------------------------
+            const openPopup = document.getElementById('openPopup');
+            const closePopup = document.getElementById('closePopup');
+            const popup = document.getElementById('popup');
+
+            openPopup.addEventListener('click', () => {
+                popup.style.display = 'flex';
+            });
+
+            closePopup.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+
+            fetch('projects.json')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data[0].title); // data is now an array of projects
+            });
+     
+
+            document.getElementById("popText").innerHTML = myObj.projects[0].description;
+
+            // -------------------------------------------------------------------------------------------
 
             class RapierDebugRenderer {
                 mesh
@@ -368,8 +413,11 @@
 
         <div class="main" id="section2">
             <a href="#section1">Click Me to get back up!</a>
+            <br>
             This website is currently under construction!
-
+            <br>
+            <br>
+            <br>
             This section will be the "About Me"
         </div>
         <!-- background -->
