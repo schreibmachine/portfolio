@@ -101,10 +101,10 @@
             .then(res => res.json())
             .then(data => {
                 console.log(data[0].title); // data is now an array of projects
+                document.getElementById("popText").innerHTML = [0].description;
             });
      
 
-            document.getElementById("popText").innerHTML = myObj.projects[0].description;
 
             // -------------------------------------------------------------------------------------------
 
