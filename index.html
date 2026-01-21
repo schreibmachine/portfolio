@@ -97,25 +97,17 @@
                 }
             });
 
-            // fetch('https://raw.githubusercontent.com/schreibmachine/portfolio/refs/heads/main/projects.json')
-            // .then(res => res.json())
-            // .then(projectsArray => {
-            //     console.log(projectsArray[0].title);
-            //     document.getElementById('popTitle').innerHTML = projectsArray[0].title;
-            //     document.getElementById('popText').innerHTML = projectsArray[0].description;
-            //     console.log("arrray length: " + projectsArray.length)
-            // });
-
             let projectsArray = []; // stores the JSON once fetched
 
             window.addEventListener('DOMContentLoaded', () => {
             fetch('https://raw.githubusercontent.com/schreibmachine/portfolio/refs/heads/main/projects.json')
                 .then(res => res.json())
                 .then(data => {
+                    // when data is fetched:
                     projectsArray = data; // save the array for later
                     console.log(projectsArray.length + ' projects loaded. Details: ', projectsArray);
 
-                    // Will create a new cube every n milliseconds (intervalID needed to kill it when finished)
+                    // Will create a new cube every n milliseconds (intervalID needed to kill it when finished) - here, to wai
                     intervalID ??= window.setInterval(createCube, 1000);
 
                 })
@@ -204,7 +196,7 @@
             renderer.domElement.id = 'myCoolRenderer'
 
             window.addEventListener('resize', () => {
-                camera.aspect = 1 //window.innerWidth / window.innerHeight  
+                camera.aspect = 1 // keep square!
                 camera.updateProjectionMatrix()
                 clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
                 clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
@@ -216,7 +208,6 @@
                 if (clampedWidth > clampedHeight) {
                     renderer.setSize(clampedHeight, clampedHeight)
                 }
-                // renderer.setSize(window.innerWidth - (framePadding * window.innerWidth) , window.innerHeight - (framePadding * window.innerHeight))
             })
 
             function createTextTexture(text, width = 256, height = 256, padding = 10) {
@@ -306,9 +297,10 @@
 
                 const cubeBody = world.createRigidBody(
                     RAPIER.RigidBodyDesc.dynamic()
-                        .setTranslation(-1 + (cubeCounter % 20) / 10, 7, 2.5)
+                        .setTranslation(-1 + (cubeCounter % 10) / 5, 7, 2.5)
                         .setCanSleep(false)
                 );
+                console.log("(cubeCounter % 10) / 5 = " + (cubeCounter % 10) / 5)
 
                 const cubeShape = RAPIER.ColliderDesc
                     .cuboid(0.2, 0.2, 0.2)
