@@ -297,10 +297,10 @@
 
                 const cubeBody = world.createRigidBody(
                     RAPIER.RigidBodyDesc.dynamic()
-                        .setTranslation(-1 + (cubeCounter % 10) / 5, 7, 2.5)
+                        .setTranslation(-1 + (cubeCounter % 3), 7, 2.5)
                         .setCanSleep(false)
                 );
-                console.log("(cubeCounter % 10) / 5 = " + (cubeCounter % 10) / 5)
+                console.log("(cubeCounter % 10) / 5 = " + (cubeCounter % 3))
 
                 const cubeShape = RAPIER.ColliderDesc
                     .cuboid(0.2, 0.2, 0.2)
