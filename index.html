@@ -286,7 +286,7 @@
                 const materials = Array(6).fill(new THREE.MeshBasicMaterial({ map: textTexture }));
 
                 const cubeMesh = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.4, 0.4, 0.4),
+                    new THREE.BoxGeometry(0.5, 0.5, 0.5),
                     materials
                 );
 
@@ -303,7 +303,7 @@
                 );
 
                 const cubeShape = RAPIER.ColliderDesc
-                    .cuboid(0.2, 0.2, 0.2)
+                    .cuboid(0.25, 0.25, 0.25)
                     .setMass(1)
                     .setRestitution(0.5);
 
