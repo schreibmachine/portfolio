@@ -198,8 +198,8 @@
             window.addEventListener('resize', () => {
                 camera.aspect = 1 // keep square!
                 camera.updateProjectionMatrix()
-                clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
-                clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
+                clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 900);
+                clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 900);
 
                 //keep renderer square and fit to the smaller window size
                 if (clampedWidth <= clampedHeight) {
@@ -210,14 +210,14 @@
                 }
             })
 
-            function createTextTexture(text, width = 256, height = 256, padding = 10) {
+            function createTextTexture(pText, pColor, width = 256, height = 256, padding = 10) {
                 const canvas = document.createElement('canvas');
                 canvas.width = width;
                 canvas.height = height;
                 const ctx = canvas.getContext('2d');
 
                 // Background (optional)
-                ctx.fillStyle = 'red';
+                ctx.fillStyle = pColor;
                 ctx.fillRect(0, 0, width, height);
 
                 ctx.fillStyle = 'black';
@@ -225,8 +225,8 @@
                 ctx.textBaseline = 'middle';
                 
                 // Function to split text into lines that fit the canvas
-                function wrapText(ctx, text, maxWidth) {
-                    const words = text.split(' ');
+                function wrapText(ctx, pText, maxWidth) {
+                    const words = pText.split(' ');
                     const lines = [];
                     let line = '';
 
@@ -248,12 +248,12 @@
                 let fontSize = 80;
                 ctx.font = `bold ${fontSize}px Arial`;
 
-                let lines = wrapText(ctx, text, width - 2 * padding);
+                let lines = wrapText(ctx, pText, width - 2 * padding);
 
                 while (lines.length * fontSize > height - 2 * padding && fontSize > 10) {
                     fontSize -= 2;
                     ctx.font = `bold ${fontSize}px Arial`;
-                    lines = wrapText(ctx, text, width - 2 * padding);
+                    lines = wrapText(ctx, pText, width - 2 * padding);
                 }
 
                 // Draw the lines centered vertically
@@ -277,9 +277,10 @@
 
                 const id = `cube_${cubeCounter}`;
 
-                // Create a canvas texture with the project title
+                // Create a canvas texture with the project title and color
                 const projectTitle = projectsArray[cubeCounter-1]?.title || 'Error';
-                const textTexture = createTextTexture(projectTitle);
+                const projectColor = projectsArray[cubeCounter-1]?.color || 'black';
+                const textTexture = createTextTexture(projectTitle,projectColor);
 
                 // Use MeshBasicMaterial so lighting doesn't affect visibility
                 const materials = Array(6).fill(new THREE.MeshBasicMaterial({ map: textTexture }));
@@ -300,7 +301,6 @@
                         .setTranslation(-1 + (cubeCounter % 3), 7, 2.5)
                         .setCanSleep(false)
                 );
-                console.log("(cubeCounter % 10) / 5 = " + (cubeCounter % 3))
 
                 const cubeShape = RAPIER.ColliderDesc
                     .cuboid(0.2, 0.2, 0.2)
