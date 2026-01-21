@@ -35,7 +35,8 @@
             <!-- <button id="openPopup" style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">Open Popup</button> -->
             <div id="popup" class="popup">
                 <div class="popup-content">
-                    <h2 id="popTitle">Popup Title</h2>
+                    <h1 id="popTitle">Popup Title</h1>
+                    <img id= "popMainImage" src="oops" width="150" height="150" position = 'fixed' />
                     <p id="popText">This popup is controlled with JavaScript.</p>
                     <button id="closePopup" style="margin-top: 10px; padding: 5px 10px; background-color: #dc3545; color: #fff; border: none; border-radius: 3px;">Close</button>
                 </div>
@@ -445,6 +446,10 @@
                     // Use the same index to access your project data
                     const project = projectsArray[index];
 
+                    var img = document.getElementById('popMainImage');
+                    img.src = project.mainImage;   // URL string
+
+                    document.getElementById('popMainImage')
                     document.getElementById('popTitle').innerHTML = project.title;
                     document.getElementById('popText').innerHTML = project.description;
 
