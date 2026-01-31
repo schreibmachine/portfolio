@@ -18,22 +18,88 @@ html {
 } 
 
 .popup {
-  display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  z-index: 1;
+  inset: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
   justify-content: center;
   align-items: center;
 }
+
+.modal {
+  background: #6dd4e4;
+  width: min(900px, 90vw);
+  max-height: 90vh;
+
+  border-radius: 8px;
+  padding: 24px;
+
+  position: relative;
+  overflow-y: auto;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.modal-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.text-block h1 {
+  margin: 0 0 8px 0;
+}
+
+.description {
+  grid-column: 1 / -1; /* span full width */
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 50%;
+  background: #dc3545;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* js friendly opening and closing of the modal thingy */
+.popup.active {
+  display: flex;
+}
+
+
 .popup-content {
+  display: grid;
+  grid-template-columns: auto auto;
   background: #6dd4e4;
   width: 75%; height: 75%;
   padding: 20px;
   border-radius: 5px;
   text-align: left;
+  overflow-y: auto;
 }
+
+.popup-content-div {
+  background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 30px;
+  text-align: right;
+}
+
 .popup:target {
   display: flex;
 }

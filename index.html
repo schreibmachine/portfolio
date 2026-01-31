@@ -34,13 +34,33 @@
             <!-- popups! -->
             <!-- <button id="openPopup" style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">Open Popup</button> -->
             <div id="popup" class="popup">
-                <div class="popup-content">
-                    <h1 id="popTitle">Popup Title</h1>
-                    <img id= "popMainImage" src="oops" width="150" height="150" position = 'fixed' />
-                    <p id="popText">This popup is controlled with JavaScript.</p>
-                    <button id="closePopup" style="margin-top: 10px; padding: 5px 10px; background-color: #dc3545; color: #fff; border: none; border-radius: 3px;">Close</button>
+                <div class="modal">
+
+                    <button id="closePopup" class="close-btn">✕</button>
+
+                    <div class="modal-grid">
+                        <img id="popMainImage" alt="Project image" />
+
+                        <div class="text-block">
+                            <h1 id="popTitle"></h1>
+                            <p id="popTagline"></p>
+                        </div>
+
+                        <p id="popText" class="description"></p>
+
+                        <!-- Optional video -->
+                        <iframe
+                            id="popVideo"
+                            width="100%"
+                            height="315"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
                 </div>
             </div>
+
    
         </div>
         <script type="module">
@@ -80,23 +100,30 @@
 
             
             // popup logic -------------------------------------------------------------------------------
-            // const openPopup = document.getElementById('openPopup');
-            const closePopup = document.getElementById('closePopup');
             const popup = document.getElementById('popup');
+            const popImg = document.getElementById('popMainImage');
+            const popTitle = document.getElementById('popTitle');
+            const popTagline = document.getElementById('popTagline');
+            const popText = document.getElementById('popText');
 
-            // openPopup.addEventListener('click', () => {
-            //     popup.style.display = 'flex';
-            // });
+            function openPopupForProject(index) {
+                const project = projectsArray[index];
+                if (!project) return;
 
-            closePopup.addEventListener('click', () => {
-                popup.style.display = 'none';
+                popImg.src = project.mainImage;
+                popTitle.textContent = project.title;
+                popTagline.textContent = project.tagline;
+                popText.textContent = project.description;
+
+                popup.classList.add('active');
+            }
+
+            // for the button i think
+            document.getElementById('closePopup').addEventListener('click', () => {
+                popup.classList.remove('active');
             });
 
-            window.addEventListener('click', (event) => {
-                if (event.target === popup) {
-                    popup.style.display = 'none';
-                }
-            });
+
 
             let projectsArray = []; // stores the JSON once fetched
 
@@ -443,17 +470,10 @@
                 console.log("Clicked cube index:", index);
 
                 if (index !== -1) {
-                    // Use the same index to access your project data
-                    const project = projectsArray[index];
+                    // go into the AI created pop up function lol
+                    openPopupForProject(index);
 
-                    var img = document.getElementById('popMainImage');
-                    img.src = project.mainImage;   // URL string
-
-                    document.getElementById('popMainImage')
-                    document.getElementById('popTitle').innerHTML = project.title;
-                    document.getElementById('popText').innerHTML = project.description;
-
-                    popup.style.display = 'flex';
+                    // popup.style.display = 'flex';
                 }
 
                 body.applyImpulse(new RAPIER.Vector3(0, 10, 0), true);
