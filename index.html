@@ -121,17 +121,16 @@
 
                 // YouTube embed, if available
                 const videoIframe = document.getElementById('popVideo');
-                if (project.videoLink) {
-                    // convert short URL to embed URL
-                    const videoID = project.videoLink.split('youtu.be/')[1]?.split('?')[0];
-                    if (videoID) {
-                        videoIframe.src = `https://www.youtube.com/embed/${videoID}`;
+                if (project.videoLinks && project.videoLinks.length) {
+                    const embedLinks = project.videoLinks.filter(link => link.includes('embed'));
+                    if (embedLinks.length) {
+                        videoIframe.src = embedLinks[0]; // using the first embed link found
                         videoIframe.style.display = 'block';
                     }
                 } else {
                     videoIframe.src = '';
                     videoIframe.style.display = 'none';
-                }
+}
 
                 // Image Gallery
                 galleryContainer.innerHTML = ''; // clear previous
@@ -139,6 +138,7 @@
                     project.ImgGallery.forEach(url => {
                         const img = document.createElement('img');
                         img.src = url;
+                        img.style.objectFit = 'contain'; // ensure aspect ratio is respected
                         galleryContainer.appendChild(img);
                     });
                     galleryContainer.style.display = 'flex';
