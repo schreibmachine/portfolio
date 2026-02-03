@@ -39,10 +39,10 @@
                     <button id="closePopup" class="close-btn">✕</button>
 
                     <div class="modal-grid">
-                        <img id="popMainImage" alt="Project image" />
+                        <img id="popMainImage" alt="Title image displaying the name of the project" />
 
                         <div class="text-block">
-                            <h1 id="popTitle"></h1>
+                            <!-- <h1 id="popTitle"></h1> -->
                             <p id="popTagline"></p>
                         </div>
 
@@ -56,6 +56,9 @@
                             frameborder="0"
                             allowfullscreen>
                         </iframe>
+
+                        <div id="popGallery" class="image-gallery"></div>
+
                     </div>
 
                 </div>
@@ -105,15 +108,43 @@
             const popTitle = document.getElementById('popTitle');
             const popTagline = document.getElementById('popTagline');
             const popText = document.getElementById('popText');
+            const galleryContainer = document.getElementById('popGallery');
 
             function openPopupForProject(index) {
                 const project = projectsArray[index];
                 if (!project) return;
 
                 popImg.src = project.mainImage;
-                popTitle.textContent = project.title;
+                // popTitle.textContent = project.title;
                 popTagline.textContent = project.tagline;
                 popText.textContent = project.description;
+
+                // YouTube embed, if available
+                const videoIframe = document.getElementById('popVideo');
+                if (project.videoLink) {
+                    // convert short URL to embed URL
+                    const videoID = project.videoLink.split('youtu.be/')[1]?.split('?')[0];
+                    if (videoID) {
+                        videoIframe.src = `https://www.youtube.com/embed/${videoID}`;
+                        videoIframe.style.display = 'block';
+                    }
+                } else {
+                    videoIframe.src = '';
+                    videoIframe.style.display = 'none';
+                }
+
+                // Image Gallery
+                galleryContainer.innerHTML = ''; // clear previous
+                if (project.ImgGallery && project.ImgGallery.length) {
+                    project.ImgGallery.forEach(url => {
+                        const img = document.createElement('img');
+                        img.src = url;
+                        galleryContainer.appendChild(img);
+                    });
+                    galleryContainer.style.display = 'flex';
+                } else {
+                    galleryContainer.style.display = 'none';
+                }
 
                 popup.classList.add('active');
             }
