@@ -89,13 +89,13 @@ html {
     max-width: 100%;
     height: auto;
     border-radius: 4px;
-    cursor: pointer;
+    /* cursor: pointer; */
     transition: transform 0.2s;
 }
 
-.image-gallery img:hover {
+/* .image-gallery img:hover {
     transform: scale(1.1);
-}
+} */
 
 
 /* js friendly opening and closing of the modal thingy */
