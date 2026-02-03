@@ -113,18 +113,7 @@
                 popTagline.textContent = project.tagline;
                 popText.textContent = project.description;
 
-                // YouTube embed, if available
-                const videoIframe = document.getElementById('popVideo');
-                if (project.videoLinks && project.videoLinks.length) {
-                    const embedLinks = project.videoLinks.filter(link => link.includes('embed'));
-                    if (embedLinks.length) {
-                        videoIframe.src = embedLinks[0]; // using the first embed link found
-                        videoIframe.style.display = 'block';
-                    }
-                } else {
-                    videoIframe.src = '';
-                    videoIframe.style.display = 'none';
-                }
+
                 // YouTube embed gallery, if available
                 const videoGalleryContainer = document.getElementById('popVideoGallery');
                 videoGalleryContainer.innerHTML = ''; // clear previous
