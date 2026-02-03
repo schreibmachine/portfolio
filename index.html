@@ -135,8 +135,8 @@
 
                 // Image Gallery
                 galleryContainer.innerHTML = ''; // clear previous
-                if (project.ImgGallery && project.ImgGallery.length) {
-                    project.ImgGallery.forEach(url => {
+                if (project.imgGallery && project.imgGallery.length) {
+                    project.imgGallery.forEach(url => {
                         const img = document.createElement('img');
                         img.src = url;
                         img.style.objectFit = 'contain'; // ensure aspect ratio is respected
