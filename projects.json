@@ -1,7 +1,7 @@
 [
     {
+        "color":            "#e35252", 
         "title":            "Audio Graph",
-        "color":            "red",
         "tagline":          "AudioGraph = auditory photograph; a moment of sound. \n A nighttime audiovisual radio experience",
         "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/audiograph_title.png",
         "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/audiograph_beforethenight_frameless.png",
@@ -14,7 +14,7 @@
         {
         "title":        "Project Two With A Very Long Title",
         "color":        "orange",
-        "tagline":      "This is the tagline, one short sentence.",
+        "tagline":      "This project should have two videos.",
         "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
         "description":  "In this project we did many things. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
         "team":         [   "Vi Schreiber",

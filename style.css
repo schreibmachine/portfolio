@@ -95,18 +95,18 @@ html {
 }
 
 /* this is for the image gallery inside the popup thingy */
-.image-gallery {
+#popGallery {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
+    flex-wrap: wrap; /* Enables multiple rows if necessary */
+    gap: 10px; /* Space between images */
+    justify-content: center; /* Centers images within container */
 }
 
-.image-gallery img {
+#popGallery img {
     max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-    transition: transform 0.2s;
+    height: auto; /* Maintains aspect ratio */
+    cursor: pointer; /* Indicates images are clickable */
+    object-fit: contain; /* Ensures images are not distorted */
 }
 
 

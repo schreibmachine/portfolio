@@ -51,7 +51,7 @@
                         <!-- video gallery -->
                         <div id="popVideoGallery" class="video-gallery">
                         <!-- image gallery  -->
-                        <div id="popGallery" class="image-gallery"></div>
+                        <div id="popGallery"></div>
 
                     </div>
 
@@ -141,6 +141,7 @@
                         img.src = url;
                         img.style.objectFit = 'contain'; // ensure aspect ratio is respected
                         galleryContainer.appendChild(img);
+                        console.log('Added gallery image:', url);
                     });
                     galleryContainer.style.display = 'flex';
                 } else {
