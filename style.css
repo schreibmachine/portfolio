@@ -12,7 +12,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden; /* keeps scroll bar away */
   position: relative; /* for absolute children like star if needed */
 }
@@ -20,7 +20,7 @@ html {
 
 #section2 {
   /* about me section */
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   background-image: linear-gradient(to bottom, #52e368, #5293e3);
   pointer-events: auto;
