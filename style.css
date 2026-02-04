@@ -1,22 +1,76 @@
-/* enable scrolling and shit  */
+/* The main culprits: ------------------------------------------------------------ */
+
 html {
+  /* enable scrolling and shit  */
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 #section1 {
+  /* the landing page */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  scroll-snap-align: start;
-  pointer-events: auto;
+  overflow: hidden; /* keeps scroll bar away */
+  position: relative; /* for absolute children like star if needed */
 }
 
+
 #section2 {
+  /* about me section */
   height: 100vh;
   width: 100vw;
   background-image: linear-gradient(to bottom, #52e368, #5293e3);
   pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-} 
+body {
+  background-color: #52e368;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  margin: 0px;
+  pointer-events: auto;
 
+}
+
+h1 {
+  color: #e352e1;
+  text-align: center;
+  /* position: absolute; */
+  font-family: "Courier New";
+  font-size: xx-large;
+  top: 0.5vh;
+  left: 1vw;
+  filter: drop-shadow(blue 0.1rem 0.1rem 2px);
+  
+}
+
+h2 {
+  color: #52e368;
+  text-align: center;
+  /* position: absolute; */
+  font-family: "Courier New";
+  font-size: large;
+  top: 5vh;
+  left: 1vw;
+  filter: drop-shadow(blue 0.1rem 0.1rem 2px);
+
+}
+
+p {
+  font-family: "Courier New";
+  font-weight: bold;
+  font-size: 20px;
+  white-space: pre-line;
+}
+/* everything in the modal / pop up thingy: -------------------------------------- */
 .popup {
   position: fixed;
   inset: 0;
@@ -98,8 +152,6 @@ html {
   cursor: pointer;
 }
 
-
-
 /* Style for the video gallery container */
 #popVideoGallery {
     display: flex;
@@ -161,48 +213,84 @@ html {
   display: flex;
 }
 
+/* navigation buttons: ----------------------------------------------------------- */
+.nav-btn {
+  display: inline-block;
+  padding: 12px 26px;
+  margin: 8px 8px;
 
-body {
-  background-color: #52e368;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  margin: 0px;
-  pointer-events: auto;
+  background: #28a745;
+  color: yellow;
+  text-decoration: none;
 
-}
-
-h1 {
-  color: #e352e1;
-  text-align: center;
-  position: absolute;
-  font-family: "Courier New";
-  font-size: xx-large;
-  top: 0.5vh;
-  left: 1vw;
-  filter: drop-shadow(blue 0.1rem 0.1rem 2px);
-  
-}
-
-h2 {
-  color: #52e368;
-  text-align: center;
-  position: absolute;
-  font-family: "Courier New";
-  font-size: large;
-  top: 5vh;
-  left: 1vw;
-  filter: drop-shadow(blue 0.1rem 0.1rem 2px);
-
-}
-
-p {
+  border-radius: 10px;
   font-family: "Courier New";
   font-weight: bold;
-  font-size: 20px;
-  white-space: pre-line;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+
+  cursor: pointer;
+
+  transition: 
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
+/* hover */
+.nav-btn:hover {
+  background: #23923d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px #5293e3;
+}
+
+/* click */
+.nav-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* about me stuff: -------------------------------------------------------------- */
+
+.about-grid {
+  width: 80%;
+  max-width: 1100px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+
+  align-items: start;
+}
+
+.about-grid img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.about-text h1 {
+  color: #dc3545;
+  text-align: left;
+  position: static;
+  top: 0;
+  left: 0;
+}
+
+/* achtung: ist inherited von p! */
+.about-text,
+.about-links p {
+  background: rgba(255,255,255,0.15);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  white-space: pre-line;
+
+}
+
+
+/* JS script things: ------------------------------------------------------------- */
 #myCoolRenderer 
 {
     position: absolute;
@@ -215,10 +303,50 @@ p {
 
 }
 
-/* 
-------- my colors: -------
-*/
+/* for the background rotation of the star: -------------------------------------- */
 
+.rotate {
+  animation: rotation 15s;
+}
+
+.linear {
+  animation-timing-function: linear;
+}
+
+.infinite {
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+
+/* THIS MUST BE LAST IN THE FILE:  */
+@media (max-width: 850px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .modal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* my colors: -------------------------------------------------------------------- */
+/* this is not a proper color scheme (and unused), just some colors i like that i want to use. */
 #redy
 {
     color: #e35252
@@ -229,9 +357,14 @@ p {
     color: #52e368
 }
 
+#softblue
+{
+    color: #5293e3
+}
+
 /* gradient pink: */
 
-#purple
+#purple-used-in-h1
 {
     color: #e352e1
 }
@@ -260,46 +393,3 @@ p {
 {
     color: #f9f871
 }
-
-/* for the background rotation:  */
-
-.rotate {
-  animation: rotation 15s;
-}
-
-.linear {
-  animation-timing-function: linear;
-}
-
-.infinite {
-  animation-iteration-count: infinite;
-}
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
-
-
-
-
-/*
-
-.rotate {
-  animation: rotation 2s infinite linear;
-}
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
-
-*/

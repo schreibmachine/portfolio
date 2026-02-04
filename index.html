@@ -32,7 +32,7 @@
             <br> 
             <!-- <button id="starButton"style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">click for cubes!</button> -->
             <br>
-            <a href="#section2"style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">About Me</a>
+            <a href="#section2"class="nav-btn" id="goAbout">About Me</a>
             <br>
             
             <!-- popups! -->
@@ -60,7 +60,7 @@
                         <p id="popText" class="description"></p>
 
                         <!-- video gallery -->
-                        <div id="popVideoGallery" class="video-gallery">
+                        <div id="popVideoGallery" class="video-gallery"></div>
                         <!-- image gallery  -->
                         <div id="popGallery"></div>
 
@@ -132,7 +132,6 @@
                 if (project.team && project.team.length) {
                     project.team.forEach(teammember => {
                         popTeamEpicContainer.innerHTML += teammember + '\n';
-                        console.log('Added team member:', teammember);
                     });
 
                 } else {
@@ -234,7 +233,7 @@
                 }
             }
 
-            await RAPIER.init() // This line is only needed if using the compat version
+            // await RAPIER.init() // This line is only needed if using the compat version
             const gravity = new RAPIER.Vector3(0.0, -9.81, 0.0)
             const world = new RAPIER.World(gravity)
             const dynamicBodies = []
@@ -283,6 +282,7 @@
 
             renderer.shadowMap.enabled = true
             renderer.shadowMap.type = THREE.VSMShadowMap
+            
             document.body.appendChild(renderer.domElement)
             renderer.domElement.id = 'myCoolRenderer'
 
@@ -591,14 +591,35 @@
         </script>
 
         <div class="main" id="section2">
-            <a href="#section1">Click Me to get back up!</a>
-            <br>
-            This website is currently under construction!
-            <br>
-            <br>
-            <br>
-            This section will be the "About Me"
+
+            <a href="#" class="nav-btn" id="goBack">Take Me Back!</a>
+
+            <div class="about-grid">
+
+                <div class="about-photo">
+                    <img src="https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000" alt="Portrait of Vi Schreiber">
+                </div>
+
+                <div class="about-text">
+                    <h1>About Me</h1>
+                    <p>
+                        This website is currently under construction!
+                        Add bio text here.
+                    </p>
+                </div>
+
+                <div class="about-links">
+                    <h3>Links</h3>
+                    <p>
+                        Instagram<br>
+                        GitHub<br>
+                        Vimeo
+                    </p>
+                </div>
+
+            </div>
+
         </div>
-        <!-- background -->
+
     </body>
 </html>
