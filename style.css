@@ -215,29 +215,7 @@ p {
 }
 
 /* navigation buttons: ----------------------------------------------------------- */
-/* .nav-btn {
-  display: inline-block;
-  padding: 12px 26px;
-  margin: 8px 8px;
-
-  background: #28a745;
-  color: yellow;
-  text-decoration: none;
-
-  border-radius: 10px;
-  font-family: "Courier New";
-  font-weight: bold;
-  font-size: 15px;
-  letter-spacing: 0.05em;
-
-  cursor: pointer;
-
-  transition: 
-    background 0.2s ease,
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-} */
- .nav-button {
+.nav-button {
   position: fixed;      /* float above everything */
   top: 20px;            /* distance from top */
   right: 20px;          /* distance from right */
@@ -251,18 +229,22 @@ p {
   font-family: "Courier New";
   font-weight: bold;
   text-decoration: none; /* if using <a> tag */
+  transition: 
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 
 /* hover */
-.nav-btn:hover {
+.nav-button:hover {
   background: #23923d;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px #5293e3;
 }
 
 /* click */
-.nav-btn:active {
+.nav-button:active {
   transform: translateY(1px);
   box-shadow: none;
 }
@@ -325,11 +307,10 @@ p {
 
 
 /* for the background rotation of the star: -------------------------------------- */
-
 .star {
-  position: fixed;      /* detach from flow */
+  position: absolute;      /* detach from flow */
   top: 2vh;             /* adjust vertical placement */
-  left: 2vh;            /* adjust horizontal placement */
+  left: 2vw;            /* adjust horizontal placement */
   width: 150px;
   height: 150px;
   z-index: 0;           /* behind everything else */
