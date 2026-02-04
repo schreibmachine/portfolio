@@ -39,11 +39,16 @@
                     <button id="closePopup" class="close-btn">✕</button>
 
                     <div class="modal-grid">
-                        <img id="popMainImage" alt="Title image displaying the name of the project" />
+                        <img id="popMainImage" class="titleImg" alt="Title image displaying the name of the project" />
 
                         <div class="text-block">
-                            <!-- <h1 id="popTitle"></h1> -->
+                            <h1 id="popTitle"></h1>
                             <p id="popTagline"></p>
+                        </div>
+
+                        <div class="text-block">
+                            <h2 id="teamHeadline">Made by:</h2>
+                            <p id="popTeam" style="text-align: right"></p>
                         </div>
 
                         <p id="popText" class="description"></p>
@@ -101,21 +106,36 @@
             const popImg = document.getElementById('popMainImage');
             const popTitle = document.getElementById('popTitle');
             const popTagline = document.getElementById('popTagline');
+            const popTeamEpicContainer = document.getElementById('popTeam');
             const popText = document.getElementById('popText');
             const galleryContainer = document.getElementById('popGallery');
+            const videoGalleryContainer = document.getElementById('popVideoGallery');
 
             function openPopupForProject(index) {
                 const project = projectsArray[index];
                 if (!project) return;
 
                 popImg.src = project.mainImage;
-                // popTitle.textContent = project.title;
+                popTitle.textContent = project.title;
                 popTagline.textContent = project.tagline;
+
+
+                // Team List
+                popTeamEpicContainer.innerHTML = ''; // clear previous
+                if (project.team && project.team.length) {
+                    project.team.forEach(teammember => {
+                        popTeamEpicContainer.innerHTML += teammember + '\n';
+                        console.log('Added team member:', teammember);
+                    });
+
+                } else {
+                    popTeamEpicContainer.innerHTML += 'Vi Schreiber';
+                }
+
                 popText.textContent = project.description;
 
 
                 // YouTube embed gallery, if available
-                const videoGalleryContainer = document.getElementById('popVideoGallery');
                 videoGalleryContainer.innerHTML = ''; // clear previous
                 if (project.videoLinks && project.videoLinks.length) {
                     const embedLinks = project.videoLinks.filter(link => link.includes('embed'));
@@ -141,10 +161,9 @@
                         img.src = url;
                         img.style.objectFit = 'contain'; // ensure aspect ratio is respected
                         galleryContainer.appendChild(img);
-                        console.log('Added gallery image:', url);
+                        // console.log('Added gallery image:', url);
                     });
                     galleryContainer.style.display = 'flex';
-                    console.log('Finished adding gallery images for project:', project.title);
 
                 } else {
                     galleryContainer.style.display = 'none';
