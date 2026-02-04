@@ -26,14 +26,16 @@
     </head>
     <body>
         <div class="main" id="section1">
-            <img id= "star1" src="img/star_blue.PNG" class="rotate linear infinite" width="150" height="150" position = 'absolute' />
+            <img id= "star1" src="img/star_blue.PNG" class="star rotate linear infinite"/>
             <h1>VI SCHREIBER</h1>
             <h2>PORTFOLIO WEBSITE</h2>
-            <br> 
-            <!-- <button id="starButton"style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">click for cubes!</button> -->
             <br>
-            <a href="#section2"class="nav-btn" id="goAbout">About Me</a>
+            <a href="#section2" class="nav-button" id="toAboutMe">About Me</a>
             <br>
+            <div class="renderer-container">
+                <!-- The Three.js canvas will go here -->
+            </div>
+
             
             <!-- popups! -->
             <!-- <button id="openPopup" style="width: 150px; padding: 10px 0px; background-color: #28a745; color: #fff; border: none; border-radius: 5px;">Open Popup</button> -->
@@ -80,34 +82,23 @@
             import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
             import RAPIER from '@dimforge/rapier3d-compat'
 
-            // background --------------------------------------------------------------------------------
-            function show_image(src, width, height, alt) {
-                var img = document.createElement("img");
-                img.src = src;
-                img.width = width;
-                img.height = height;
-                img.alt = alt;
-                
-                // set the position
-                img.style.position = 'absolute';
-                img.style.top = document.body.clientHeight * Math.random() + 'px';
-                img.style.left = document.body.clientWidth * Math.random() + 'px';
+            // nav button logic -------------------------------------------------------------------------------
+            const btnAbout = document.getElementById('toAboutMe');
+            const btnBack = document.getElementById('toLanding');
+            
+            //toggling the visibility between the two buttons...
+            btnAbout.addEventListener('click', () => {
+                btnAbout.style.display = 'none';
+                btnBack.style.display = 'block';
+            });
 
-                document.body.appendChild(img);
-            }
-            // document.getElementById('starButton').addEventListener('click', () =>
-            //     createCube('testKollege')
-            //     // show_image("img/star_blue.PNG", 100, 100, "a hand-drawn blue star"),
-            //     // show_image("img/star_red.PNG", 200, 200, "a hand-drawn red star"),
-            //     // show_image("img/star_yellow.PNG", 200, 200, "a hand-drawn yellow star")
-            // );
-            // document.getElementById('star1').style.top = document.body.clientHeight * Math.random() + 'px';
-            // document.getElementById('star1').style.left = document.body.clientHeight * Math.random() + 'px';
-            // document.getElementById('star1').style.class = "rotate linear infinite";
-            // -------------------------------------------------------------------------------------------
+            btnBack.addEventListener('click', () => {
+                btnAbout.style.display = 'block';
+                btnBack.style.display = 'none';
+            });
 
             
-            // popup logic -------------------------------------------------------------------------------
+            // popup logic ------------------------------------------------------------------------------------
             const popup = document.getElementById('popup');
             const popImg = document.getElementById('popMainImage');
             const popTitle = document.getElementById('popTitle');
@@ -119,6 +110,9 @@
             const popClient = document.getElementById('popClient');
 
             function openPopupForProject(index) {
+                // disable about button when popup is open
+                btnAbout.style.display = 'none';
+                
                 const project = projectsArray[index];
                 if (!project) return;
 
@@ -180,12 +174,13 @@
                 popup.classList.add('active');
             }
 
-            // for the button i think
+            // for the closing the popup button i think
             document.getElementById('closePopup').addEventListener('click', () => {
                 popup.classList.remove('active');
+                btnAbout.style.display = 'block';
             });
 
-
+            // fetching the JSON & create cubes when finished ------------------------------------------------
 
             let projectsArray = []; // stores the JSON once fetched
 
@@ -233,7 +228,7 @@
                 }
             }
 
-            // await RAPIER.init() // This line is only needed if using the compat version
+            await RAPIER.init() // This line is needed!
             const gravity = new RAPIER.Vector3(0.0, -9.81, 0.0)
             const world = new RAPIER.World(gravity)
             const dynamicBodies = []
@@ -282,9 +277,11 @@
 
             renderer.shadowMap.enabled = true
             renderer.shadowMap.type = THREE.VSMShadowMap
-            
-            document.body.appendChild(renderer.domElement)
-            renderer.domElement.id = 'myCoolRenderer'
+
+            const rendererContainer = document.querySelector('.renderer-container');
+            rendererContainer.appendChild(renderer.domElement);
+            renderer.domElement.id = 'myCoolRenderer';
+
 
             window.addEventListener('resize', () => {
                 camera.aspect = 1 // keep square!
@@ -592,7 +589,7 @@
 
         <div class="main" id="section2">
 
-            <a href="#" class="nav-btn" id="goBack">Take Me Back!</a>
+            <a href="#section1" class="nav-button" id="toLanding" style="display:none;">Back</a>
 
             <div class="about-grid">
 
