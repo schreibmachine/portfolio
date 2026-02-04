@@ -55,15 +55,15 @@ html {
 .text-block h1 {
   color: #dc3545;
   text-align: left;
-  position: sticky;
+  position: static;
   top: 0;
   left: 0;
 }
 .text-block h2 {
   color: black;
   text-align: right;
-  position: sticky;
-  top: 2rem;
+  position: static;
+  top: 10rem;
   left: 0;
 }
 

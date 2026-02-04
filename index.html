@@ -51,8 +51,10 @@
                         </div>
 
                         <div class="text-block">
-                            <h2 id="teamHeadline">Made by:</h2>
-                            <p id="popTeam" style="text-align: right"></p>
+                            <h2 id="teamHeadline">Made by</h2>
+                            <p id="popTeam" style="text-align: right; font-size: 18px;"></p>
+                            <h2 id="teamHeadline">for</h2>
+                            <p id="popClient" style="text-align: right; font-size: 15px;"></p>
                         </div>
 
                         <p id="popText" class="description"></p>
@@ -114,6 +116,7 @@
             const popText = document.getElementById('popText');
             const galleryContainer = document.getElementById('popGallery');
             const videoGalleryContainer = document.getElementById('popVideoGallery');
+            const popClient = document.getElementById('popClient');
 
             function openPopupForProject(index) {
                 const project = projectsArray[index];
@@ -135,6 +138,8 @@
                 } else {
                     popTeamEpicContainer.innerHTML += 'Vi Schreiber';
                 }
+                // Client Text
+                popClient.textContent = project.client || 'myself';
 
                 popText.textContent = project.description;
 
