@@ -190,7 +190,7 @@ p {
   display: flex;
 }
 
-
+/* i have no idea what this is for: */
 .popup-content {
   display: grid;
   grid-template-columns: auto auto;

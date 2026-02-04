@@ -109,10 +109,11 @@
             const videoGalleryContainer = document.getElementById('popVideoGallery');
             const popClient = document.getElementById('popClient');
 
+            // this creates and fills the popup for each project
             function openPopupForProject(index) {
                 // disable about button when popup is open
                 btnAbout.style.display = 'none';
-                
+
                 const project = projectsArray[index];
                 if (!project) return;
 
