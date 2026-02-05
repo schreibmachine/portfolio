@@ -37,7 +37,7 @@
                 <div class="hero-text">
                     <h1>VI SCHREIBER</h1>
                     <h2>PORTFOLIO WEBSITE</h2>
-                    <a href="#section2" class="nav-button" id="toAboutMe">About Me</a>
+                    <a class="nav-button" id="toAboutMe">About Me</a>
                 </div>
 
                 <div id="renderer-container"></div>
@@ -109,8 +109,14 @@
             const btnBack = document.getElementById('toLanding');
             const btnMail = document.getElementById("btnMail")
             
+            const section1 = document.getElementById("section1");
+            const section2 = document.getElementById("section2");
+
             //toggling the visibility between the buttons...
             btnAbout.addEventListener('click', () => {
+                // smooth scroll TO ABOUT
+                section2.scrollIntoView({ behavior: "smooth" });
+
                 btnAbout.style.display = 'none';
 
                 btnBack.style.display = 'block';
@@ -118,10 +124,15 @@
             });
 
             btnBack.addEventListener('click', () => {
+                // smooth scroll BACK UP
+                section1.scrollIntoView({ behavior: "smooth" });
+                
                 btnAbout.style.display = 'block';
+
                 btnBack.style.display = 'none';
                 btnMail.style.display = 'none';
             });
+
 
             
             // popup logic ------------------------------------------------------------------------------------
@@ -611,7 +622,7 @@
 
         <div class="main" id="section2">
 
-            <a href="#section1" class="nav-button" id="toLanding" style="display:none;">Back</a>
+            <a class="nav-button" id="toLanding" style="display:none;">Back</a>
 
             <div class="about-grid">
 
