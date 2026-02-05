@@ -23,6 +23,16 @@
                 }
             }
         </script>
+        <script>
+            // this helps CSS understand the proper viewport height on start to avoid glitchy overlapping when loading the page
+            (function () {
+                function setVH() {
+                    document.documentElement.style.setProperty( '--vh' , window.innerHeight * 0.01 + 'px' );
+                }
+                setVH();
+            })();
+        </script>
+
     </head>
     <body>
         <div class="main" id="section1">
@@ -126,7 +136,7 @@
             btnBack.addEventListener('click', () => {
                 // smooth scroll BACK UP
                 section1.scrollIntoView({ behavior: "smooth" });
-                
+
                 btnAbout.style.display = 'block';
 
                 btnBack.style.display = 'none';
