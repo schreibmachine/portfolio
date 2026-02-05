@@ -9,7 +9,8 @@
         "description":      "AudioGraph is an interactive, late-night listening experience inspired by the strange intimacy of radio after midnight. The project turns a virtual radio receiver into a space for discovering “audio photographs” — fragments of sound that capture fleeting moods, memories, and moments. \n \n  The application can only be accessed between 10 p.m. and 3 a.m., encouraging users to engage with it in the quiet hours when radio feels most personal. At night, a glowing globe becomes active: rotating it lets users tune into hidden sound pieces scattered across its surface. Finding them isn’t straightforward - just like with an old radio, signals fade in and out, and only careful adjustment reveals clear audio. \n  \n Visually minimal and intentionally lo-fi, the project focuses on atmosphere rather than spectacle, drawing from memories of unreliable kitchen radios, late-night callers, and the freedom of off-hour programming. One of the discoverable stations includes an hour-long custom late-night show, blending interviews, music, and storytelling. \n  \n AudioGraph explores radio not just as technology, but as a medium of intimacy, nostalgia, and nighttime wandering - a small world of sounds waiting to be tuned in.",
         "team":             ["Vi Schreiber"],
         "client":           "Creative Technologies (m.a.) \n as the final project for Creative Coding 2",
-        "year":             "2022? lol i should chack that again",
+        "year":             "2022",
+        "credits":          "Special Thanks to \n Prof. Angela Brenneke",          
         "videoLinks":        [   "https://www.youtube.com/embed/zFE25LIjcnA"]
     },
         {

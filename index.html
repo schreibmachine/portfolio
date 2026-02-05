@@ -76,6 +76,9 @@
                         <!-- image gallery  -->
                         <div id="popGallery"></div>
 
+                        <p id="popCredits" class="description"></p>
+
+
                     </div>
 
                 </div>
@@ -129,6 +132,7 @@
             const popTagline = document.getElementById('popTagline');
             const popTeamEpicContainer = document.getElementById('popTeam');
             const popText = document.getElementById('popText');
+            const popCredits = document.getElementById('popCredits');
             const galleryContainer = document.getElementById('popGallery');
             const videoGalleryContainer = document.getElementById('popVideoGallery');
             const popClient = document.getElementById('popClient');
@@ -161,7 +165,8 @@
                 popClient.textContent = project.client || 'myself';
                 popYear.textContent = project.year || '';
 
-                popText.textContent = project.description;
+                popText.textContent = project.description || '';;
+                popCredits.textContent = project.credits || '';
 
 
                 // YouTube embed gallery, if available
