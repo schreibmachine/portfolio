@@ -27,14 +27,23 @@
     <body>
         <div class="main" id="section1">
             <img id= "star1" src="img/star_blue.PNG" class="star rotate linear infinite"/>
-            <h1>VI SCHREIBER</h1>
+            <!-- <h1>VI SCHREIBER</h1>
             <h2>PORTFOLIO WEBSITE</h2>
             <br>
-            <a href="#section2" class="nav-button" id="toAboutMe">About Me</a>
             <br>
-            <div class="renderer-container">
-                <!-- The Three.js canvas will go here -->
+            <div class="renderer-container"></div> -->
+            
+            <div class="hero-layout">
+                <div class="hero-text">
+                    <h1>VI SCHREIBER</h1>
+                    <h2>PORTFOLIO WEBSITE</h2>
+                    <a href="#section2" class="nav-button" id="toAboutMe">About Me</a>
+                </div>
+
+                <div id="renderer-container"></div>
+
             </div>
+            
             
             
             <!-- popups! -->
@@ -81,6 +90,16 @@
             import Stats from 'three/addons/libs/stats.module.js'
             import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
             import RAPIER from '@dimforge/rapier3d-compat'
+
+            // prevent hash navigation on load/reload ---------------------------------------------------------
+            window.addEventListener("load", () => {
+                if (window.location.hash) {
+                    history.replaceState(null, null, " ");
+                    window.scrollTo(0, 0);
+                    // jkhskdjhfksdjhf
+                }
+            });
+
 
             // nav button logic -------------------------------------------------------------------------------
             const btnAbout = document.getElementById('toAboutMe');
@@ -279,9 +298,9 @@
             renderer.shadowMap.enabled = true
             renderer.shadowMap.type = THREE.VSMShadowMap
 
-            const rendererContainer = document.querySelector('.renderer-container');
-            rendererContainer.appendChild(renderer.domElement);
             renderer.domElement.id = 'myCoolRenderer';
+            document.getElementById("renderer-container").appendChild(renderer.domElement);
+
 
 
             window.addEventListener('resize', () => {

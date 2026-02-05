@@ -18,7 +18,7 @@ html {
   height: calc(var(--vh) * 100);
   overflow: hidden; /* keeps scroll bar away */
   position: relative; /* for absolute children like star if needed */
-  outline: 3px solid red; /* debug */
+  /* outline: 3px solid red;  debug */
 }
 
 
@@ -63,7 +63,7 @@ h1, h2 {
 }
 
 h2 {
-  color: #52e368;
+  color: yellow;
   margin-top: 6px;     /* space below h1 */
   font-size: large;
   left: 1vw;
@@ -74,6 +74,14 @@ p {
   font-weight: bold;
   font-size: 20px;
   white-space: pre-line;
+}
+
+.hero-layout {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  gap: 40px;
+  width: 100%;
 }
 
 /* everything in the modal / pop up thingy: -------------------------------------- */
@@ -313,7 +321,6 @@ p {
   max-height: 90vh;
 }
 
-
 /* for the background rotation of the star: -------------------------------------- */
 .star {
   position: absolute;      /* detach from flow */
@@ -353,6 +360,9 @@ p {
   }
   .modal-grid {
     grid-template-columns: 1fr;
+  }
+  .hero-layout {
+    flex-direction: column;
   }
 }
 
