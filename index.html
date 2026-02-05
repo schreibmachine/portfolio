@@ -66,6 +66,7 @@
                             <p id="popTeam" style="text-align: right; font-size: 18px;"></p>
                             <h2 id="teamHeadline">for</h2>
                             <p id="popClient" style="text-align: right; font-size: 15px;"></p>
+                            <p id="popYear" style="text-align: right; font-size: 15px;"></p>
                         </div>
                         
                         <p id="popText" class="description"></p>
@@ -131,6 +132,7 @@
             const galleryContainer = document.getElementById('popGallery');
             const videoGalleryContainer = document.getElementById('popVideoGallery');
             const popClient = document.getElementById('popClient');
+            const popYear = document.getElementById('popYear');
 
             // this creates and fills the popup for each project
             function openPopupForProject(index) {
@@ -157,6 +159,7 @@
                 }
                 // Client Text
                 popClient.textContent = project.client || 'myself';
+                popYear.textContent = project.year || '';
 
                 popText.textContent = project.description;
 
@@ -372,13 +375,13 @@
 
                 // Start with a big font size and shrink until it fits
                 let fontSize = 80;
-                ctx.font = `bold ${fontSize}px Arial`;
+                ctx.font = `bold ${fontSize}px NewCourier`;
 
                 let lines = wrapText(ctx, pText, width - 2 * padding);
 
                 while (lines.length * fontSize > height - 2 * padding && fontSize > 10) {
                     fontSize -= 2;
-                    ctx.font = `bold ${fontSize}px Arial`;
+                    ctx.font = `bold ${fontSize}px NewCourier`;
                     lines = wrapText(ctx, pText, width - 2 * padding);
                 }
 
@@ -446,42 +449,19 @@
 
 
 
-            function createBall(name) {
+            // function createBall(name) {
                 
-                // Ball Collider
-                const sphereMesh = new THREE.Mesh(new THREE.SphereGeometry(0.2), new THREE.MeshNormalMaterial())
-                sphereMesh.castShadow = true
-                scene.add(sphereMesh)
-                const sphereBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(0, 5, 2.5).setCanSleep(false))
-                const sphereShape = RAPIER.ColliderDesc.ball(.2).setMass(1).setRestitution(0.5)
-                world.createCollider(sphereShape, sphereBody)
-                dynamicBodies.push([sphereMesh, sphereBody])
-            }
+            //     // Ball Collider
+            //     const sphereMesh = new THREE.Mesh(new THREE.SphereGeometry(0.2), new THREE.MeshNormalMaterial())
+            //     sphereMesh.castShadow = true
+            //     scene.add(sphereMesh)
+            //     const sphereBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(0, 5, 2.5).setCanSleep(false))
+            //     const sphereShape = RAPIER.ColliderDesc.ball(.2).setMass(1).setRestitution(0.5)
+            //     world.createCollider(sphereShape, sphereBody)
+            //     dynamicBodies.push([sphereMesh, sphereBody])
+            // }
 
-            
-            /*
-            // ConvexHull Collider
-            const icosahedronMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 0), new THREE.MeshNormalMaterial())
-            icosahedronMesh.castShadow = true
-            scene.add(icosahedronMesh)
-            const icosahedronBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(2.5, 5, 0).setCanSleep(false))
-            const points = new Float32Array(icosahedronMesh.geometry.attributes.position.array)
-            const icosahedronShape = RAPIER.ColliderDesc.convexHull(points).setMass(1).setRestitution(0.5)
-            world.createCollider(icosahedronShape, icosahedronBody)
-            dynamicBodies.push([icosahedronMesh, icosahedronBody])
-
-            // Trimesh Collider
-            const torusKnotMesh = new THREE.Mesh(new THREE.TorusKnotGeometry(), new THREE.MeshNormalMaterial())
-            torusKnotMesh.castShadow = true
-            scene.add(torusKnotMesh)
-            const torusKnotBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(2, 10, 0))
-            const vertices = new Float32Array(torusKnotMesh.geometry.attributes.position.array)
-            let indices = new Uint32Array(torusKnotMesh.geometry.index.array)
-            const torusKnotShape = RAPIER.ColliderDesc.trimesh(vertices, indices).setMass(1).setRestitution(0.5)
-            world.createCollider(torusKnotShape, torusKnotBody)
-            dynamicBodies.push([torusKnotMesh, torusKnotBody])
-            */
-
+            // THE ROOM GEOMETRY: ------------------------------------------------------------------------------------------------------------
             // the floor (using a cuboid)
             const floorMesh = new THREE.Mesh(new THREE.BoxGeometry(50, 1, 50), new THREE.MeshPhongMaterial({color: '#36e817', emissive: '#060673', specular: '#ff0000', shininess: '100'}))
             floorMesh.receiveShadow = true
@@ -632,21 +612,23 @@
             <div class="about-grid">
 
                 <div class="about-photo">
-                    <img src="https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000" alt="Portrait of Vi Schreiber">
+                    <img src="https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/thisisme_square.jpg" alt="Portrait of Vi Schreiber. They are wearing a bright red turtle nek pullover and are holding the plastic model of a red lobster over their head and looking excitedly into the camera.">
+                    <a href="mailto:vi.schreiber@posteo.de" class="nav-button" id="btnMail" style="position: relative; margin-top: 10%; justify-self: center; width: 40%; top: 70%; background-color: #4977b0; display:none;">Send Me an E-Mail!</a>
                 </div>
 
                 <div class="about-text">
-                    <h1>About Me</h1>
-                    <p>
-                        This website is currently under construction!
-                        Add bio text here.
+                    <h1>Hallo, I am Vi! :)</h1>
+                    <h2 style="position: static;">pronouns: they/them</h2>
+                    <p>I am currently studying Creative Technologies (M.A.) at the Filmuniversitaet Babelsberg KONRAD WOLF.
+
+                    Before C-Tech, I graduated the Bachelor Program for Game Design at the HTW Berlin. During my time there I worked on several game projects on different parts: from concept to design, from technical implementation to artistic realization.
+                    
+                    Prior to my university studies, I completed a school-based training as a technical design assistant (Gestaltungstechnische:r Assistent:in) in the field of stage painting with a connected entrance qualification for a university of applied sciences.
+
+                    Beyond these fields of study, you can talk to me about all kinds of sewing, the art of drag, weird indie games and trashy anime.
                     </p>
                 </div>
-
-                <div class="about-links">
-                    <h2>Links</h2>
-                    <a href="mailto:vi.schreiber@posteo.de" class="nav-button" id="btnMail" style="position: absolute; top: 70%; display:none;">Send Me an E-Mail!</a>
-                </div>
+                
                 
             </div>
             

@@ -256,7 +256,7 @@ p {
 .nav-button:hover {
   background: #23923d;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px #5293e3;
+  box-shadow: 0 6px 16px blue;
 }
 
 /* click */
@@ -280,13 +280,13 @@ p {
 }
 
 .about-grid img {
-  width: 100%;
-  border-radius: 12px;
+  width: 50%;
+  border-radius: 100%;
   object-fit: cover;
 }
 
 .about-text h1 {
-  color: #dc3545;
+  /* color: #dc3545; */
   text-align: left;
   position: static;
   top: 0;
@@ -294,12 +294,12 @@ p {
 }
 
 /* achtung: ist inherited von p! */
-.about-text,
-.about-links p {
+.about-text p {
   background: rgba(255,255,255,0.15);
   padding: 20px;
   border-radius: 12px;
   text-align: left;
+  font-weight:normal;
   white-space: pre-line;
 
 }
