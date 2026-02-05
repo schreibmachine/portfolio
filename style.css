@@ -4,6 +4,8 @@ html {
   /* enable scrolling and shit  */
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 #section1 {
@@ -12,30 +14,35 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100dvh;
+  /* height: 100dvh; */
+  height: calc(var(--vh) * 100);
   overflow: hidden; /* keeps scroll bar away */
   position: relative; /* for absolute children like star if needed */
+  outline: 3px solid red; /* debug */
 }
 
 
 #section2 {
-  /* about me section */
-  height: 100dvh;
+  height: calc(var(--vh) * 100);
   width: 100vw;
+
   background-image: linear-gradient(to bottom, #52e368, #5293e3);
-  pointer-events: auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+
+  padding-top: 20px;
+  overflow-y: auto;
 }
 
 body {
   background-color: #52e368;
   height: 100vh;
   width: 100vw;
+  margin: 0;
   overflow: hidden;
-  margin: 0px;
   pointer-events: auto;
 
 }

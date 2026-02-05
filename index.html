@@ -285,6 +285,10 @@
 
 
             window.addEventListener('resize', () => {
+                // set overall viewport:
+                setViewportHeight();
+
+                // renderer things:
                 camera.aspect = 1 // keep square!
                 camera.updateProjectionMatrix()
                 clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 900);
@@ -298,6 +302,16 @@
                     renderer.setSize(clampedHeight, clampedHeight)
                 }
             })
+            
+            function setViewportHeight() {
+                document.documentElement.style.setProperty(
+                    '--vh',
+                    `${window.innerHeight * 0.01}px`
+                );
+            }
+
+            setViewportHeight();
+
 
             function createTextTexture(pText, pColor, width = 256, height = 256, padding = 10) {
                 const canvas = document.createElement('canvas');
