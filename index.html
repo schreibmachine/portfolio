@@ -104,16 +104,20 @@
             // nav button logic -------------------------------------------------------------------------------
             const btnAbout = document.getElementById('toAboutMe');
             const btnBack = document.getElementById('toLanding');
+            const btnMail = document.getElementById("btnMail")
             
-            //toggling the visibility between the two buttons...
+            //toggling the visibility between the buttons...
             btnAbout.addEventListener('click', () => {
                 btnAbout.style.display = 'none';
+
                 btnBack.style.display = 'block';
+                btnMail.style.display = 'block';
             });
 
             btnBack.addEventListener('click', () => {
                 btnAbout.style.display = 'block';
                 btnBack.style.display = 'none';
+                btnMail.style.display = 'none';
             });
 
             
@@ -640,16 +644,12 @@
                 </div>
 
                 <div class="about-links">
-                    <h3>Links</h3>
-                    <p>
-                        Instagram<br>
-                        GitHub<br>
-                        Vimeo
-                    </p>
+                    <h2>Links</h2>
+                    <a href="mailto:vi.schreiber@posteo.de" class="nav-button" id="btnMail" style="position: absolute; top: 70%; display:none;">Send Me an E-Mail!</a>
                 </div>
-
+                
             </div>
-
+            
         </div>
 
     </body>

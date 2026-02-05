@@ -152,8 +152,8 @@ p {
 
 .close-btn {
   position: fixed;
-  top: 1vh;
-  right: 1vh;
+  top: 2vh;
+  right: 2vw;
 
   width: 36px;
   height: 36px;
@@ -303,7 +303,6 @@ p {
   white-space: pre-line;
 
 }
-
 
 /* for the canvas renderer: ------------------------------------------------------ */
 .renderer-container {
