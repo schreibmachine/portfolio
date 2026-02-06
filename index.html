@@ -49,7 +49,7 @@
                     <h2>PORTFOLIO WEBSITE</h2>
                     <p style="position: static; margin-top: 5vh; margin-left: 1vw; max-width: 250px;font-size: 10pt; font-weight: normal">
                         <span style="font-weight: bold">How to Use:</span>
-                        The falling cubes are my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #FFFF2B 0%, #FF50B1 100%); background-clip: text; color: transparent; ">OLDEST to NEWEST</span> <span style="color: red"> WIP </span>
+                        The falling cubes are my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #FFFF2B 0%, #FF50B1 100%); background-clip: text; color: transparent; ">OLDEST to NEWEST</span>.
                         ★ Click any of them to see details about the project
                         ★ Reload page for a new random assortment of cubes <span style="color: red"> WIP </span>
                     </p>
@@ -250,16 +250,54 @@
                     projectsArray = data; // save the array for later
                     console.log(projectsArray.length + ' projects loaded. Details: ', projectsArray);
 
+                    // assign gradient colors FIRST
+                    assignProjectColors(projectsArray);
+
+                    // THEN spawn cubes:
                     // Will create a new cube every n milliseconds (intervalID needed to kill it when finished) - here, to wai
                     intervalID ??= window.setInterval(createCube, 1000);
 
                 })
                 .catch(err => console.error('Failed to load projects.json:', err));
             });
-     
 
 
-            // -------------------------------------------------------------------------------------------
+            // assigning colors based on years -----------------------------------------------------------
+            function lerp(a, b, t) {
+                return a + (b - a) * t;
+            }
+
+            function assignProjectColors(projects) {
+                const start = { r: 255, g: 255, b: 43 };   // oldest
+                const end   = { r: 255, g: 80,  b: 177 };  // newest
+
+                const withYear = projects
+                    .map((p, i) => ({ ...p, originalIndex: i }))
+                    .filter(p => p.year !== undefined && p.year !== null);
+
+                withYear.sort((a, b) => a.year - b.year);
+
+                const count = withYear.length;
+
+                withYear.forEach((p, i) => {
+                    const t = count <= 1 ? 0 : i / (count - 1);
+
+                    projects[p.originalIndex].gradientColor = {
+                        r: Math.round(lerp(start.r, end.r, t)),
+                        g: Math.round(lerp(start.g, end.g, t)),
+                        b: Math.round(lerp(start.b, end.b, t))
+                    };
+                });
+
+                // missing year - light grey
+                projects.forEach(p => {
+                    if (!p.gradientColor) {
+                        p.gradientColor = { r: 100, g: 100, b: 100 };
+                    }
+                });
+            }
+
+            // RAPIER stuff: -----------------------------------------------------------------------------
 
             class RapierDebugRenderer {
                 mesh
@@ -437,9 +475,13 @@
 
                 const id = `cube_${cubeCounter}`;
 
-                // Create a canvas texture with the project title and color
+                // Create a canvas texture with the project title
                 const projectTitle = projectsArray[cubeCounter-1]?.title || 'Error';
-                const projectColor = projectsArray[cubeCounter-1]?.color || 'black';
+                
+                // Color cube based on year
+                const color = projectsArray[cubeCounter - 1]?.gradientColor;
+                const projectColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
+
                 const textTexture = createTextTexture(projectTitle,projectColor);
 
                 // Use MeshBasicMaterial so lighting doesn't affect visibility
