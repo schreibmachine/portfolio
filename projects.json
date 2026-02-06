@@ -25,8 +25,10 @@
     {
         "title":            "HKW Moabeat",
         "tagline":          "Creating a sound track and reactive graphics for the web",
-        "mainImage":        "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "imgGallery":       [   "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000"],
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/HKWm_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/HKWm_screenshot_myShader1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/HKWm_screenshot_myShader2.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/HKWm_screenshot_myShader3.png"],
         "description":      "HEIZKRAFTWERK MOABEAT explores the visuals and soundscapes of inhuman, but man-made, industrial structures. \n \n A core memory that drove me to this topic was when I was biking through Treptower Park and heard the ungodly noises that were made by the Heizkraftwerk Klingenberg on the other side of the Spree. \n I originally wanted to tape its sounds, but it has since been upgraded to using gas instead of coal, so the sounds are gone... \n Luckily (not for our climate of course, but for this project), the Heizkraftwerk Moabit still uses coal, so it still sounds just like HKW Klingenberg used to sound! So I made a little field trip & recorded various sounds from there with my smartphone.",
         "team":             [   "Vi Schreiber"],
         "client":           "Creative Technologies (m.a.) \n as the final project for Theoretical Backgrounds for Audio and Graphics",
