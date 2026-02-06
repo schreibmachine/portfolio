@@ -16,7 +16,7 @@
     { 
         "title":            "Portfolio Website",
         "tagline":          "Making my own portfolio website",
-        "mainImage":        "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/portfolio_title.png",
         "imgGallery":       [],
         "description":      "I made this website myself because I needed a new one and I wanted to some funny things with it, like using THREE.js for my projects (for no good reason). \n \n  It is built with THREE.js, the physics are handled by Rapier3D. The cubes are dynamically created from a JSON that contains the project data, like descriptions, images and/or video links. \n \n You can check out the code on my GitHub account.",
         "team":             ["Vi Schreiber"],
