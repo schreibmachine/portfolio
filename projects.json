@@ -1,6 +1,15 @@
 [
+    { 
+        "title":            "Portfolio Website",
+        "tagline":          "Making my own portfolio website",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/portfolio_title.png",
+        "imgGallery":       [],
+        "description":      "I made this website myself because I needed a new one and I wanted to some funny things with it, like using THREE.js for my projects (for no good reason). \n \n  It is built with THREE.js, the physics are handled by Rapier3D. The cubes are dynamically created from a JSON that contains the project data, like descriptions, images and/or video links. \n \n You can check out the code on my GitHub account.",
+        "team":             ["Vi Schreiber"],
+        "year":             "2026", 
+        "videoLinks":       []
+    },
     {
-        "color":            "#5293e3", 
         "title":            "Audio Graph",
         "tagline":          "AudioGraph = auditory photograph; \n a moment of sound. \n A nighttime audiovisual radio experience",
         "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/audiograph_title.png",
@@ -13,101 +22,17 @@
         "credits":          "Special Thanks to \n Prof. Angela Brenneke",          
         "videoLinks":        [   "https://www.youtube.com/embed/zFE25LIjcnA"]
     },
-    { 
-        "title":            "Portfolio Website",
-        "tagline":          "Making my own portfolio website",
-        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/portfolio_title.png",
-        "imgGallery":       [],
-        "description":      "I made this website myself because I needed a new one and I wanted to some funny things with it, like using THREE.js for my projects (for no good reason). \n \n  It is built with THREE.js, the physics are handled by Rapier3D. The cubes are dynamically created from a JSON that contains the project data, like descriptions, images and/or video links. \n \n You can check out the code on my GitHub account.",
-        "team":             ["Vi Schreiber"],
-        "year":             "2026", 
-        "videoLinks":       []
-    },
-        {
-        "title":        "Project Two With A Very Long Title",
-        "color":        "orange",
-        "tagline":      "This project should have two videos.",
-        "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "description":  "In this project we did many things. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "team":         [   "Vi Schreiber",
-                            "Another Name",
-                            "Yet Another Name" ],
-        "videoLinks":    [  "https://www.youtube.com/embed/dQw4w9WgXcQ?list=RDdQw4w9WgXcQ",
-                            "https://www.youtube.com/embed/zFE25LIjcnA" ]
-    },
-        {
-        "title":        "Project Three no video",
-        "color":        "yellow",
-        "tagline":      "The third tagline goes here. \n This project has no video.",
-        "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "description":  "In this project we did many things. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "team":         [   "Vi Schreiber",
-                            "Another Name",
-                            "Yet Another Name" ],
-        "videoLinks":    [  ]
-    },
-        {
-        "title":        "Project Four With Yet Another Actually Super Long Title",
-        "color":        "green",
-        "tagline":      "This is the tagline, one short sentence.",
-        "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "description":  "In this project we did many things. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "team":         [   "Vi Schreiber",
-                            "Another Name",
-                            "Yet Another Name" ],
-        "videoLinks":    [  ]
-    },
-        {
-        "title":        "Project Five on a blue cube",
-        "color":        "blue",
-        "tagline":      "This is the tagline, one short sentence.",
-        "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "description":  "In this project we did many things. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "team":         "Vi Schreiber, Another Name, Yet Another Name",
-        "videoLinks":    [  ]
-    },
-        {
-        "title":        "Project 6",
-        "color":        "purple",
-        "tagline":      "This is the tagline, one short sentence.",
-        "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "description":  "In this project we did many things. \n \n Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "team":         [   "Vi Schreiber",
-                            "Another Name",
-                            "Yet Another Name" ],
-        "videoLinks":    [  ]
-    },
-        {
-        "title":        "Project 7",
-        "color":        "red",
-        "tagline":      "This is the tagline, one short sentence.",
-        "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "description":  "In this project we did many things. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "team":         [   "Vi Schreiber",
-                            "Another Name",
-                            "Yet Another Name" ],
-        "videoLinks":    [  ]
-    },
-        {
-        "title":        "Project 8",
-        "color":        "orange",
-        "tagline":      "This is the tagline, one short sentence.",
-        "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "description":  "In this project we did many things. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "team":         [   "Vi Schreiber",
-                            "Another Name",
-                            "Yet Another Name" ],
-        "videoLinks":    [  ]
-    },
-        {
-        "title":        "Project 9",
-        "color":        "yellow",
-        "tagline":      "This is the tagline, one short sentence.",
-        "mainImage":    "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "description":  "In this project we did many things. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "team":         [   "Vi Schreiber",
-                            "Another Name",
-                            "Yet Another Name" ],
-        "videoLinks":    [  ]
+    {
+        "title":            "Example Project",
+        "tagline":          "This is the tagline. \n A kind of mini description.",
+        "mainImage":        "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
+        "imgGallery":       [   "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000"],
+        "description":      "In this project we did many things. \n \n Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "team":             [   "Vi Schreiber",
+                                "Another Name"],
+        "client":           "Put client or course here",
+        "year":             "",
+        "credits":          "Special Thanks or Credits go to: \n A person",          
+        "videoLinks":        [ "https://www.youtube.com/embed/dQw4w9WgXcQ" ]
     }
 ]

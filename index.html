@@ -241,6 +241,15 @@
             // fetching the JSON & create cubes when finished ------------------------------------------------
 
             let projectsArray = []; // stores the JSON once fetched
+            let spawnOrder = [];
+
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
 
             window.addEventListener('DOMContentLoaded', () => {
             fetch('https://raw.githubusercontent.com/schreibmachine/portfolio/refs/heads/main/projects.json')
@@ -250,8 +259,13 @@
                     projectsArray = data; // save the array for later
                     console.log(projectsArray.length + ' projects loaded. Details: ', projectsArray);
 
-                    // assign gradient colors FIRST
-                    assignProjectColors(projectsArray);
+                    // build random spawn order first
+                    spawnOrder = [...projectsArray.keys()];
+                    // shuffleArray(spawnOrder); // _______________________________________________________TODO: currently disbled shuffling cuz the colors didn't shuffle
+
+                    // assign gradient colors along shuffled order
+                    assignProjectColors(projectsArray, spawnOrder);
+
 
                     // THEN spawn cubes:
                     // Will create a new cube every n milliseconds (intervalID needed to kill it when finished) - here, to wai
@@ -475,8 +489,13 @@
 
                 const id = `cube_${cubeCounter}`;
 
+                const projectIndex = spawnOrder[cubeCounter - 1];
+                const project = projectsArray[projectIndex];
+                
                 // Create a canvas texture with the project title
-                const projectTitle = projectsArray[cubeCounter-1]?.title || 'Error';
+                const projectTitle = project?.title || 'Error';
+                // const projectTitle = projectsArray[cubeCounter-1]?.title || 'Error';
+
                 
                 // Color cube based on year
                 const color = projectsArray[cubeCounter - 1]?.gradientColor;
@@ -494,7 +513,9 @@
 
                 cubeMesh.name = id;
                 cubeMesh.userData.body = null;  
-                cubeMesh.userData.projectIndex = cubeCounter - 1; // store index for popup
+                // cubeMesh.userData.projectIndex = cubeCounter - 1; // store index for popup
+                cubeMesh.userData.projectIndex = projectIndex; // store index for popup
+
 
                 scene.add(cubeMesh);
 
@@ -616,7 +637,9 @@
                 const body = mesh.userData.body;
 
                 // Find the index of this mesh in dynamicBodies
-                const index = dynamicBodies.indexOf(mesh);
+                // const index = dynamicBodies.indexOf(mesh);
+                const index = mesh.userData.projectIndex;
+
 
                 console.log("Clicked cube index:", index);
 
