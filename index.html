@@ -113,12 +113,11 @@
 
             // prevent hash navigation on load/reload ---------------------------------------------------------
             window.addEventListener("load", () => {
-                if (window.location.hash) {
-                    history.replaceState(null, null, " ");
-                    window.scrollTo(0, 0);
-                    // jkhskdjhfksdjhf
-                }
+                history.replaceState(null, "", window.location.pathname);
+                document.getElementById("section1")
+                    ?.scrollIntoView({ behavior: "auto" });
             });
+
 
 
             // nav button logic -------------------------------------------------------------------------------
@@ -165,6 +164,8 @@
             const popClient = document.getElementById('popClient');
             const popYear = document.getElementById('popYear');
             const popProjectLink = document.getElementById('popProjectLink');
+            const modal = document.querySelector('.modal');
+
 
             // this creates and fills the popup for each project
             function openPopupForProject(index) {
@@ -196,7 +197,7 @@
                 popText.textContent = project.description || '';;
                 popCredits.textContent = project.credits || '';
                 
-                if (project.link) {
+                if (project.projectLink) {
                     popProjectLink.href = project.projectLink;
                     popProjectLink.textContent = "Visit " + project.title;
                     popProjectLink.style.display = "inline-block";
@@ -241,6 +242,8 @@
                 }
 
                 popup.classList.add('active');
+                modal.scrollTop = 0;
+
             }
 
             // for the closing the popup button i think
@@ -721,7 +724,8 @@
 
                 <div class="about-photo">
                     <img src="https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/thisisme_square.jpg" alt="Portrait of Vi Schreiber. They are wearing a bright red turtle nek pullover and are holding the plastic model of a red lobster over their head and looking excitedly into the camera.">
-                    <a href="mailto:vi.schreiber@posteo.de" class="nav-button" id="btnMail" style="position: relative; margin-top: 10%; justify-self: center; width: 40%; top: 70%; background-color: #4977b0; display:none;">Send Me an E-Mail!</a>
+                    <a href="mailto:vi.schreiber@posteo.de" class="nav-button" id="btnMail" style="position: static; margin-top: 10%; justify-self: center; width: 40%; top: 70%; background-color: #4977b0; display:none;">Send Me an E-Mail!</a>
+
                 </div>
 
                 <div class="about-text">

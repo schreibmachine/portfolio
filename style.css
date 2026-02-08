@@ -136,9 +136,11 @@ p {
 
 .project-link {
   display: inline-block;
+  font-family: "Courier New";
+  grid-column: 1 / -1; /* span full width */
   margin: 10px auto;
   padding: 8px 14px;
-  background: #dc3545;
+  background: #4977b0;
   color: white;
   text-decoration: none;
   border-radius: 6px;
@@ -148,6 +150,8 @@ p {
 
 .project-link:hover {
   opacity: 0.85;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px blue;
 }
 
 .text-block p {
@@ -176,7 +180,7 @@ p {
   cursor: pointer;
   border: none;
   border-radius: 50%;
-  background: #dc3545;
+  background: #f71212;
   color: white;
   font-size: 18px;
   filter: drop-shadow(blue 0rem 0rem 3px);

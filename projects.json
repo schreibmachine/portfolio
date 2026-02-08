@@ -7,7 +7,7 @@
         "description":      "I made this website myself because I needed a new one and I wanted to some funny things with it, like using THREE.js for my projects (for no good reason). \n \n  It is built with THREE.js, the physics are handled by Rapier3D. The cubes are dynamically created from a JSON that contains the project data, like descriptions, images and/or video links. \n \n You can check out the code on my GitHub account.",
         "team":             ["Vi Schreiber"],
         "year":             "2026", 
-        "videoLinks":       []
+        "projectLink":       ["https://github.com/schreibmachine/portfolio"]
     },
     {
         "title":            "Audio Graph",
