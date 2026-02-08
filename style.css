@@ -134,6 +134,22 @@ p {
   left: 0;
 }
 
+.project-link {
+  display: inline-block;
+  margin: 10px auto;
+  padding: 8px 14px;
+  background: #dc3545;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.project-link:hover {
+  opacity: 0.85;
+}
+
 .text-block p {
   text-align: left;
   white-space: pre-line;

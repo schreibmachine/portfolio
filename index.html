@@ -86,6 +86,7 @@
                         </div>
                         
                         <p id="popText" class="description"></p>
+                        <a id="popProjectLink" class="project-link" target="_blank" rel="noopener"></a>
                         
                         <!-- video gallery -->
                         <div id="popVideoGallery" class="video-gallery"></div>
@@ -93,7 +94,6 @@
                         <div id="popGallery"></div>
 
                         <p id="popCredits" class="description" style="text-align:center; font-size: 15px;"></p>
-                        <p id="popProjectLink" class="description" style="text-align:center; font-weight:bolder; font-size:15px; color: blue; "></p>
 
                     </div>
 
@@ -195,7 +195,15 @@
 
                 popText.textContent = project.description || '';;
                 popCredits.textContent = project.credits || '';
-                popProjectLink.textContent = project.projectLink || '';
+                
+                if (project.link) {
+                    popProjectLink.href = project.projectLink;
+                    popProjectLink.textContent = "Visit " + project.title;
+                    popProjectLink.style.display = "inline-block";
+                } else {
+                    popProjectLink.style.display = "none";
+                }
+
 
 
                 // YouTube embed gallery, if available
