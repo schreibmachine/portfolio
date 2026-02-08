@@ -24,7 +24,7 @@
     },
     {
         "title":            "HKW Moabeat",
-        "tagline":          "Creating a sound track and reactive graphics for the web",
+        "tagline":          "Creating a music piece and reactive graphics for the web",
         "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/HKWm_title.png",
         "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/HKWm_screenshot_myShader1.png",
                                 "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/HKWm_screenshot_myShader2.png",
@@ -33,7 +33,26 @@
         "team":             [   "Vi Schreiber"],
         "client":           "Creative Technologies (m.a.) \n as the final project for Theoretical Backgrounds for Audio and Graphics",
         "year":             "2022",         
-        "videoLinks":        [ "https://www.youtube.com/embed/YMMXQ9Ge0B0"]
+        "videoLinks":        [ "https://www.youtube.com/embed/YMMXQ9Ge0B0"],
+        "projectLink":        [ "https://schreibmachine.github.io/hkwmoabeat.github.io/"]
+    },
+    {
+        "title":            "MIRROR.INK",
+        "tagline":          "meditative mirror magic",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_Startmenu.PNG",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_levelStart.PNG",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_Level_04.PNG",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_makingOf1.jpg",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_makingOf2_tile.jpg"],
+        "description":      "This game prototype presents the first three levels of a scalable puzzle system built around a simple but distinctive mechanic: players control a mirrored axis to guide falling drops into target areas with precision. The closer the alignment, the more intricate and visually pleasing the resulting ink pattern becomes, directly linking gameplay accuracy to visual reward. \n \n The project's visual identity is inspired by the pottery technique mocha diffusion, where acidic pigment reacts with alkaline clay to produce organic branching patterns. To capture this effect authentically, over one hundred real ink reactions were created, filmed, and integrated into the game as animated assets. Even the menu typography was produced using the same process, giving the project a cohesive handcrafted aesthetic. \n \n The result is a minimalist puzzle experience that blends tactile, analogue textures with digital interaction, creating a system that can easily be expanded with additional mechanics and levels. \n \n The project MIRROR.INK was awarded 2nd place at the Deutsche Multimediapreis in 2017 in the 21 - 25 age category in Dresden.",
+        "team":             [   "Vi Schreiber",
+                                "Anna Schiffels",
+                                "Moritz Steinbeck"],
+        "client":           "Game Design (b.a.) \n as the 2nd semester game project",
+        "year":             "2017",
+        "credits":          "Special Thanks to \n Prof. Angela Brenneke",          
+        "videoLinks":        [   "https://www.youtube.com/embed/4-XPGjaDMEc"]
     },
     {
         "title":            "Example Project",
@@ -44,8 +63,9 @@
         "team":             [   "Vi Schreiber",
                                 "Another Name"],
         "client":           "Put client or course here",
-        "year":             "1997",
+        "year":             "2020",
         "credits":          "Special Thanks or Credits go to: \n A person",          
-        "videoLinks":        [ "https://www.youtube.com/embed/dQw4w9WgXcQ" ]
+        "videoLinks":        [ "https://www.youtube.com/embed/dQw4w9WgXcQ" ],
+        "projectLink":        [ "https://schreibmachine.github.io/hkwmoabeat.github.io/"]
     }
 ]

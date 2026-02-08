@@ -49,7 +49,7 @@
                     <h2>PORTFOLIO WEBSITE</h2>
                     <p style="position: static; margin-top: 5vh; margin-left: 1vw; max-width: 260px;font-size: 10pt; font-weight: normal">
                         <span style="font-weight: bold">How to Use:</span>
-                        The falling cubes are my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #00B4FF 0%, #FF50B1 100%); background-clip: text; color: transparent; ">OLDEST to NEWEST</span>.
+                        The falling cubes are my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #FFE100 0%, #ED00D5 100%); background-clip: text; color: transparent; ">OLDEST to NEWEST</span>.
                         ★ Click any of them to see details about the project
                         ★ Reload page for a new random assortment of cubes <span style="color: red"> WIP </span>
                     </p>
@@ -93,6 +93,7 @@
                         <div id="popGallery"></div>
 
                         <p id="popCredits" class="description" style="text-align:center; font-size: 15px;"></p>
+                        <p id="popProjectLink" class="description" style="text-align:center; font-weight:bolder; font-size:15px; color: blue; "></p>
 
                     </div>
 
@@ -163,6 +164,7 @@
             const videoGalleryContainer = document.getElementById('popVideoGallery');
             const popClient = document.getElementById('popClient');
             const popYear = document.getElementById('popYear');
+            const popProjectLink = document.getElementById('popProjectLink');
 
             // this creates and fills the popup for each project
             function openPopupForProject(index) {
@@ -193,6 +195,7 @@
 
                 popText.textContent = project.description || '';;
                 popCredits.textContent = project.credits || '';
+                popProjectLink.textContent = project.projectLink || '';
 
 
                 // YouTube embed gallery, if available
@@ -282,8 +285,8 @@
             }
 
             function assignProjectColors(projects) {
-                const start = { r: 0, g: 180, b: 255 };   // oldest
-                const end   = { r: 255, g: 80,  b: 177 };  // newest
+                const start = { r: 255, g: 255, b: 0 };   // oldest
+                const end   = { r: 237, g: 0,  b: 213 };  // newest
 
                 const withYear = projects
                     .map((p, i) => ({ ...p, originalIndex: i }))
@@ -310,6 +313,7 @@
                     }
                 });
             }
+            
 
             // RAPIER stuff: -----------------------------------------------------------------------------
 
