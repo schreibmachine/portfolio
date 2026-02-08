@@ -38,7 +38,7 @@
     },
     {
         "title":            "MIRROR.INK",
-        "tagline":          "meditative mirror magic",
+        "tagline":          "meditative mirror magic \n My first game prototype made in Unity",
         "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_title.png",
         "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_levelStart.PNG",
                                 "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/mirrorInk_Level_04.PNG",
@@ -53,12 +53,30 @@
         "videoLinks":        [   "https://www.youtube.com/embed/4-XPGjaDMEc"]
     },
     {
+        "title":            "T/LT",
+        "tagline":          "Tilt it to win it! \n My first 3D game made with Unity",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/tilt_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/tilt_Screenshot1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/tilt_Screenshot3.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/tilt_Playtesting.jpg",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/tilt_HiveFive.JPG"],
+        "description":      "T/LT is a 3D physics-puzzle game that introduces players to its mechanics gradually across five levels. The core gameplay revolves around tilting platforms to set two spheres in motion, guiding each to its respective goal. Success depends on mastering momentum, timing, and spatial reasoning, making each level a small but satisfying challenge. \n \n For this project we emphasized clean, polished design: the game system was intentionally kept simple to allow focus on level design, visual quality, and smooth interaction. Each level combines engaging puzzles with careful attention to physics-based mechanics, creating an intuitive yet rewarding player experience while the development was a great learning opportunity for us. \n \n The game prototype was showcased at HIVE FIVE at HTW, a public exhibition for student projects from Game Design.",
+        "team":             [   "Vi Schreiber",
+                                "Ole Pecherz",
+                                "Uliana Schoeller",
+                                "Rebecca Zimmer"],
+        "client":           "Game Design (b.a.) \n as the 2nd semester game project",
+        "year":             "2018",          
+        "videoLinks":        [ "https://www.youtube.com/embed/LB1JkJstCho" ]
+    },
+
+    {
         "title":            "Example Project",
         "tagline":          "This is the tagline. \n A kind of mini description. ------------------------------------------------------------------------------- ",
         "mainImage":        "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
         "imgGallery":       [   "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000"],
         "description":      "In this project we did many things. \n \n Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
-        "team":             [   "Vi Schreiber",
+        "team":             [   "Vi schreiber",
                                 "Another Name"],
         "client":           "Put client or course here",
         "year":             "2020",
@@ -66,4 +84,4 @@
         "videoLinks":        [ "https://www.youtube.com/embed/dQw4w9WgXcQ" ],
         "projectLink":        [ "https://schreibmachine.github.io/hkwmoabeat.github.io/"]
     }
-]
+] 
