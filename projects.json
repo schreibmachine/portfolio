@@ -104,11 +104,23 @@
                                 "https://www.youtube.com/embed/YPyP0ZnK-qs",    
                                 "https://www.youtube.com/embed/w2ekJMsG9H8" ]
     },
-
-
-
-
-
+    {
+        "title":            "TRAINSTATION",
+        "tagline":          "INTO THE VOID \n A Spatial Projection Mapping Experience",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/Trainstation_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/TRAINSTATION_Bild_RenderTest1.jpeg",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/TRAINSTATION_Bild_RenderTest2.jpeg",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/trainstation_ObjectsAll_Screenshot.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/trainstation_Screenshot_interactiveScene1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/trainstation_Screenshot_interactiveScene4.png"],
+        "description":      "During my Game Design studies I took several courses around 3D content creation with Autodesk Maya. \n The project TRAINSTATION is the combined final result of two of these courses - '3D Technik' and '3D Content Tools', both of which were held by Prof. Jan Berger. \n \n '3D Technik' is focussed on practicing and learning techniques of hard-surface modelling. \n The final project for this course was meant to be a reconstruction of any U-Bahn station in/around Berlin (to be able to take reference photos as needed) and then make it playable in Unity. I chose the station U Warschauer Straße, because of it's charming wear and tear which also presented me with a challenge to recreate this. The 3D model of the trainstation consists of the entrance hall, where the transition to track 3 is blocked off, the covered tracks and their open continuation which amounted to approx. 85m. \n \n The topic of '3D Content Tools' was the creation of simple plugins or scripts in AutoDesk Maya. In this course we learned the basics of Maya's Embedded Programming Language, MEL, and were to come up with a useful script to implement. \n Since I simultaneously had the task of recreating a train station with lots of possibly generatable features, it made sense to combine both projects. This was my first venture into the (sometimes fiddly) world of programming for Maya, so I tried to stick to a simple concept: a fence generator.",
+        "team":             [   "Vi schreiber" ],
+        "client":           "Game Design (b.a.) \n as the final project for two Autodesk Maya courses",
+        "year":             "2019",   
+        "videoLinks":        [  "https://www.youtube.com/embed/U8Su_uAzqyo",
+                                "https://www.youtube.com/embed/_MR84cRaUiQ",
+                                "https://www.youtube.com/embed/wDguejqrzRA" ]
+    },
 
 
 
