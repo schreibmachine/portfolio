@@ -137,10 +137,36 @@
                                 "Warja Rybakova"],
         "client":           "Game Design (b.a.) \n as the 6th semester game project (Project C)",
         "year":             "2020",
-        "credits":          "Special Thanks \n to RootMotion for giving us access to their FinalIK Unity Asset",          
+        "credits":          "Special Thanks \n to RootMotion for giving us access to their FinalIK Unity Asset! <3",          
         "videoLinks":        [ "https://www.youtube.com/embed/8dZOr5M31yg" ,
                                 "https://www.youtube.com/embed/avYlzfRIKFo"]
     },
+    {
+        "title":            "REMOTE (b.a.)",
+        "tagline":          "Umsetzung einer Spielszene in VR mit Fokus auf einem experimentellen Workflow zur Einbindung von volumetrischen Videos.",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_201027_CryoLab_whole_sketch-reColor.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_maya_Screenshot1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_unreal_Screenshot1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_Rendering_1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_Rendering_5.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_unreal_ingame2 _edited" ],
+        "description":      "In my artistic-technical bachelor thesis REMOTE I worked on the implementation of a virtual reality game scene in which players can explore a part of a space station in VR and explore several volumetric videos. This prototype was designed as a vertical slice of a much larger game concept / story. \n \n Minimalist gameplay and the explorable environment support the immersive encounter with the captured 3D footage of real people. The integration of 'moving' photogrammetry posed a particular technical challenge and the core theme of the work. \n \n In the thesis I have present my experimental workflow and explain what processes I used to achieve the shown results. Furthermore, I tried to evaluate the applicability of the workflow and the involved steps and give an outlook on things that could be improved. \n You can read my thesis by following the link:",
+        "team":             [   "Vi schreiber" ],
+        "client":           "Bachelor thesis and project",
+        "year":             "2021",
+        "credits":          "Special Thanks to \n Prof. Jan Berger for his exceptional support and advice",          
+        "videoLinks":        [ "https://www.youtube.com/embed/9q_H_k3uChk" ],
+        "projectLink":        [ "https://drive.google.com/file/d/13pWuzx3KGbQFvDEV17ZXCM9LJg-0ZzIN/view?usp=sharing"]
+    },
+
+
+
+
+
+
+
+
 
 
 
@@ -164,7 +190,6 @@
         "team":             [   "Vi schreiber",
                                 "Another Name"],
         "client":           "Put client or course here",
-        "year":             "2020",
         "credits":          "Special Thanks or Credits go to: \n A person",          
         "videoLinks":        [ "https://www.youtube.com/embed/dQw4w9WgXcQ" ],
         "projectLink":        [ "https://schreibmachine.github.io/hkwmoabeat.github.io/"]
