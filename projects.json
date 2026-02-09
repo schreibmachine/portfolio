@@ -71,6 +71,37 @@
     },
 
     {
+        "title":            "VESTALE",
+        "tagline":          "Consumed by the [simulated] fire.",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vestale_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vestale_Sketch.jpg",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vestale_wip_igittDickePartikel.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vestale_wip_rendercompare.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vestale_frame412_blackBG.png"],
+        "description":      "With this project I explored particles and rendering them with Houdini - The goal was to create a fire simulation encasing another object. \n \n I wanted to find a statue in order to combine a particle simulation with an object. I checked the ScanTheWorld archive and found a statue of a Vestale, a high priestess of Rome, guarding the holy hearth of the city...",
+        "team":             [   "Vi schreiber" ],
+        "client":           "Creative Technologies (m.a.) \n as the final project for Procedural Generation and Simulation",
+        "year":             "2023",   
+        "videoLinks":        [ "https://www.youtube.com/embed/hZAwXnQTgMY" ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
         "title":            "Example Project",
         "tagline":          "This is the tagline. \n A kind of mini description. ------------------------------------------------------------------------------- ",
         "mainImage":        "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
@@ -85,3 +116,5 @@
         "projectLink":        [ "https://schreibmachine.github.io/hkwmoabeat.github.io/"]
     }
 ] 
+
+With this project I explored particles and rendering them with Houdini - The goal was to create a fire simulation encasing another object. \n \n I wanted to find a statue in order to combine a particle simulation with an object. I checked the ScanTheWorld archive and found a statue of a Vestale, a high priestess of Rome, guarding the holy hearth of the city. \n

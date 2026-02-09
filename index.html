@@ -49,7 +49,7 @@
                     <h2>PORTFOLIO WEBSITE</h2>
                     <p style="position: static; margin-top: 5vh; margin-left: 1vw; max-width: 260px;font-size: 10pt; font-weight: normal">
                         <span style="font-weight: bold">How to Use:</span>
-                        The falling cubes are my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #FFE100 0%, #ED00D5 100%); background-clip: text; color: transparent; ">OLDEST to NEWEST</span>.
+                        The falling cubes are my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #FFF6B0 0%, #ED00D5 100%); background-clip: text; color: transparent;">OLDEST to NEWEST</span>.
                         ★ Click any of them to see details about the project
                         ★ Reload page for a new random assortment of cubes <span style="color: red"> WIP </span>
                     </p>
@@ -296,7 +296,7 @@
             }
 
             function assignProjectColors(projects) {
-                const start = { r: 255, g: 255, b: 0 };   // oldest
+                const start = { r: 255, g: 246, b: 176 };   // oldest
                 const end   = { r: 237, g: 0,  b: 213 };  // newest
 
                 const withYear = projects
@@ -473,13 +473,13 @@
 
                 // Start with a big font size and shrink until it fits
                 let fontSize = 80;
-                ctx.font = `bold ${fontSize}px NewCourier`;
+                ctx.font = `bold ${fontSize}px Courier New`;
 
                 let lines = wrapText(ctx, pText, width - 2 * padding);
 
                 while (lines.length * fontSize > height - 2 * padding && fontSize > 10) {
                     fontSize -= 2;
-                    ctx.font = `bold ${fontSize}px NewCourier`;
+                    ctx.font = `bold ${fontSize}px Courier New`;
                     lines = wrapText(ctx, pText, width - 2 * padding);
                 }
 
