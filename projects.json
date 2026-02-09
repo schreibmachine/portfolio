@@ -65,11 +65,10 @@
                                 "Ole Pecherz",
                                 "Uliana Schoeller",
                                 "Rebecca Zimmer"],
-        "client":           "Game Design (b.a.) \n as the 2nd semester game project",
+        "client":           "Game Design (b.a.) \n as the 3rd semester game project",
         "year":             "2018",          
         "videoLinks":        [ "https://www.youtube.com/embed/LB1JkJstCho" ]
     },
-
     {
         "title":            "VESTALE",
         "tagline":          "Consumed by the [simulated] fire.",
@@ -84,9 +83,27 @@
         "year":             "2023",   
         "videoLinks":        [ "https://www.youtube.com/embed/hZAwXnQTgMY" ]
     },
-
-
-
+    {
+        "title":            "Q3",
+        "tagline":          "INTO THE VOID \n A Spatial Projection Mapping Experience",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/q3_title.jpg",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/q3_playtest.jpg",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/q3_finalSetup.jpg",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/q3_playing4.JPG",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/q3_coolCloseUp.jpg"],
+        "description":      "Q3 - ENTER THE VOID is centered around the player's spatial experience inside a 2m³ box which is projected on from four sides. Players can move this cube they are in by holding a VR tracker in the desired direction. The closer they get to the edge of the box, the faster the movements. \n \n With this project we approached the subject of projections and how to combine them with an interesting gameplay. However, since we had not yet played/created such a game, it took a long time to find solid concepts for the system. This ultimately led to the development of four levels and four similar, yet very different, experiences: \n \n RABBITHOLE is a high-speed racing track, challenging the players sense of stability and dexterity \n ORIENTATION is a labyrinth of tunnels and rooms, challenging the players sense or, well, orientation \n STUCK is an intense flythrough of a field of abstract shapes, challenging the players spatial awareness and aim \n MANDALA is meant to guide through striking viewpoints, challenging the player's abilities in pattern-seeking \n \n The players guided through all of these levels by geometric shapes - in some, the players have to be fast enough to catch up with them, in others the challenge lies more in finding them. \n When players enter the cube, they can move the VR tracker toward one of the four sides, simultaneously learning the controls and also selecting a level. \n \n The artstyle was inspired by artists such as James Turrell. The declared design goal was to blow the audience away and make them forget the world outside the cube. \n Another important point was that projectors usually only create weak color contrasts in daylight - which means one has to choose particularly stark colors on the screen to make Q3 - INTO THE VOID glow properly. \n These neon-like colors are composed individually for each level and are further accentuated by a wireframe effect, which is designed to emphasize the three-dimensionality. Each path in each level is rewarded by an escalation of the color scheme into increasingly unnatural and immersive compositions.",
+        "team":             [   "Vi schreiber" ,
+                                "Anna Schiffels",
+                                "Uliana Schoeller",
+                                "Moritz Steinbeck",
+                                "Mikka Wild"],
+        "client":           "Game Design (b.a.) \n as the 4th semester game project",
+        "year":             "2018",   
+        "videoLinks":        [  "https://www.youtube.com/embed/t2xDjn87_IQ",
+                                "https://www.youtube.com/embed/-_6wKBoZsQA",
+                                "https://www.youtube.com/embed/YPyP0ZnK-qs",    
+                                "https://www.youtube.com/embed/w2ekJMsG9H8" ]
+    },
 
 
 
