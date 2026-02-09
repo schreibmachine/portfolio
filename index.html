@@ -470,18 +470,36 @@
                     lines.push(line);
                     return lines;
                 }
-
+                
                 // Start with a big font size and shrink until it fits
                 let fontSize = 80;
-                ctx.font = `bold ${fontSize}px Courier New`;
+                let lines = [];
 
-                let lines = wrapText(ctx, pText, width - 2 * padding);
-
-                while (lines.length * fontSize > height - 2 * padding && fontSize > 10) {
-                    fontSize -= 2;
+                while (fontSize > 10) {
                     ctx.font = `bold ${fontSize}px Courier New`;
                     lines = wrapText(ctx, pText, width - 2 * padding);
+
+                    const lineHeight = fontSize * 1.2;
+                    const totalHeight = lines.length * lineHeight;
+
+                    // check widest line
+                    let maxLineWidth = 0;
+                    for (const line of lines) {
+                        const w = ctx.measureText(line).width;
+                        if (w > maxLineWidth) maxLineWidth = w;
+                    }
+
+                    if (
+                        totalHeight <= height - 2 * padding &&
+                        maxLineWidth <= width - 2 * padding
+                    ) {
+                        break; // fits!
+                    }
+
+                    fontSize -= 1;
+                    console.log("I downsized", pText, "to", fontSize);
                 }
+
 
                 // Draw the lines centered vertically
                 const lineHeight = fontSize * 1.2;
@@ -491,6 +509,8 @@
                 for (let line of lines) {
                     ctx.fillText(line, width / 2, y);
                     y += lineHeight;
+                    // console.log("I added line: " + line);
+
                 }
 
                 const texture = new THREE.CanvasTexture(canvas);
