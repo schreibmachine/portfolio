@@ -159,6 +159,21 @@
         "videoLinks":        [ "https://www.youtube.com/embed/9q_H_k3uChk" ],
         "projectLink":        [ "https://drive.google.com/file/d/13pWuzx3KGbQFvDEV17ZXCM9LJg-0ZzIN/view?usp=sharing"]
     },
+    {
+        "title":            "Project R.E.A.L.",
+        "tagline":          "Investigating the feasibility, narrative possibilities, and perception of 'impossible' spaces with non-Euclidean elements in a virtual reality setting",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/pREAL_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/pREAL_Eschersketch_edited1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/pREAL_Screenshot1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/pREAL_Screenshot2.png" ],
+        "description":      "... Do you know the unreal feeling when exploring lost places, e.g. an abandoned mall? \n ... Have you ever wondered what lies beyond the scaffolding of our reality? \n ... Do you own a HTC Vive Pro ™ and are willing to explore a prototypical application? \n If you answered yes to any of these questions, may I present you with the Project: R.E.A.L.: \n an experimental application which allows you to safely explore what is known as a 'backroom'. Project: R.E.A.L. let's you noclip through our reality and travel into one 'level' of the backrooms. \n \n This level, which looks like a broken memory of an abandoned mall, is still rather unexplored and staying oriented may be a real challenge. A peculiar feature of the level are the portals. \n They connect places within the level, changing - or even reversing - the direction of everything around you. Additionally, there seems to be a powerful entity at the heart of the level, but so far it's not clear whether it is peaceful or hostile ... \n \n ------------------------ \n \n The main focus of the project was the implementation of portals for VR and exploring these as a possible alternative method of locomotion. The idea was that the visitors of this space always move in a circle inside a VR roomscale setup. The roomscale area of approx. 2m x 2m is separated into four parts for the level design with walls, doors and other level elements like escalators placed along the middle of these sections. The visitors will be either transported by escalators or by the aformentioned portals. The portals connect two different parts of the world and also change the orientation of gravity or 'down'.",
+        "team":             [   "Vi schreiber" ],
+        "client":           "Creative Technologies (m.a.) \n as the Orientation Project (first project)",
+        "year":             "2023",          
+        "videoLinks":        [  "https://www.youtube.com/embed/dRCJuzDuP2E",
+                                "https://www.youtube.com/embed/HoJeIfYFKGM",
+                                "https://www.youtube.com/embed/i18JTDQALxI"  ]
+    },
 
 
 
