@@ -91,7 +91,7 @@
                                 "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/q3_finalSetup.jpg",
                                 "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/q3_playing4.JPG",
                                 "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/q3_coolCloseUp.jpg"],
-        "description":      "Q3 – ENTER THE VOID places players inside a 2 m³ cube surrounded by projections on four sides, turning physical space into the main game interface. Using a VR tracker, players move the virtual environment by pushing toward the cube’s walls, with movement speed increasing near the edges. Controls and level selection happen naturally as players explore the space. \n \n The installation features four distinct levels, each built around a different spatial challenge. RABBITHOLE is a fast-paced racing experience testing balance and reflexes, ORIENTATION presents a maze of tunnels that challenges navigation skills, STUCK sends players flying through abstract obstacle fields requiring precision, and MANDALA guides players through shifting viewpoints focused on pattern recognition. Across all levels, players follow or chase geometric shapes that lead them through each environment. \n \n Inspired by artists like James Turrell, the project uses neon color palettes and wireframe visuals to maximize depth and contrast in projected space, creating an immersive experience designed to make players forget the world outside the cube.",
+        "description":      "Q3 - ENTER THE VOID places players inside a 2 m³ cube surrounded by projections on four sides, turning physical space into the main game interface. Using a VR tracker, players move the virtual environment by pushing toward the cube’s walls, with movement speed increasing near the edges. Controls and level selection happen naturally as players explore the space. \n \n The installation features four distinct levels, each built around a different spatial challenge. RABBITHOLE is a fast-paced racing experience testing balance and reflexes, ORIENTATION presents a maze of tunnels that challenges navigation skills, STUCK sends players flying through abstract obstacle fields requiring precision, and MANDALA guides players through shifting viewpoints focused on pattern recognition. Across all levels, players follow or chase geometric shapes that lead them through each environment. \n \n Inspired by artists like James Turrell, the project uses neon color palettes and wireframe visuals to maximize depth and contrast in projected space, creating an immersive experience designed to make players forget the world outside the cube.",
         "team":             [   "Vi schreiber" ,
                                 "Anna Schiffels",
                                 "Uliana Schoeller",
@@ -121,10 +121,26 @@
                                 "https://www.youtube.com/embed/_MR84cRaUiQ",
                                 "https://www.youtube.com/embed/wDguejqrzRA" ]
     },
-
-
-
-
+    {
+        "title":            "VR COOP",
+        "tagline":          "Climb together! \n as the tiny and the GIANT",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vrcoop_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vrcoop_block-ideation.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vrcoop_WIPScreenshot.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vrcoop_Postcard_Front_What.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/vrcoop_Postcard_Front_Climbing.png" ],
+        "description":      "VR COOP is a cooperative VR experience built around communication, scale, and shared problem-solving between two players. Each player inhabits a different role: one is a giant who constructs climbable structures, while the other plays a tiny character who climbs them. Progress depends entirely on cooperation - new building platforms only become available once the smaller player unlocks them by being there. \n Because verbal communication is intentionally limited within the experience, players rely heavily on body language and gestures to guide each other. As they build, climb, and negotiate their next steps, each session naturally creates its own small narrative shaped by collaboration and improvisation. \n \n Designed as a focused gameplay slice, VR COOP explores how physical presence, scale differences, and cooperative mechanics can create meaningful interaction in virtual reality, turning simple movement and construction into a shared social experience centered on teamwork and communication. \n \n We developed VR COOP in the summer semester 2020 in the midst of the COVID-19 pandemic and hence created the game excerpt working completely remote.",
+        "team":             [   "Vi schreiber",
+                                "Jorge Reissner",
+                                "Jose Antonio Guerrero Fernandez",
+                                "Sarah Laube",
+                                "Warja Rybakova"],
+        "client":           "Put client or course here",
+        "year":             "2020",
+        "credits":          "Special Thanks \n to RootMotion for giving us access to their FinalIK Unity Asset",          
+        "videoLinks":        [ "https://www.youtube.com/embed/8dZOr5M31yg" ,
+                                "https://www.youtube.com/embed/avYlzfRIKFo"]
+    },
 
 
 
