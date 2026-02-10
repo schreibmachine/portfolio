@@ -174,39 +174,18 @@
                                 "https://www.youtube.com/embed/HoJeIfYFKGM",
                                 "https://www.youtube.com/embed/i18JTDQALxI"  ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
     {
-        "title":            "Example Project",
-        "tagline":          "This is the tagline. \n A kind of mini description. ------------------------------------------------------------------------------- ",
-        "mainImage":        "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000",
-        "imgGallery":       [   "https://img.freepik.com/premium-photo/painting-dolphins-rainbow-sky_948935-1079.jpg?w=2000"],
-        "description":      "In this project we did many things. \n \n Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
-        "team":             [   "Vi schreiber",
-                                "Another Name"],
-        "client":           "Put client or course here",
-        "credits":          "Special Thanks or Credits go to: \n A person",          
-        "videoLinks":        [ "https://www.youtube.com/embed/dQw4w9WgXcQ" ],
-        "projectLink":        [ "https://schreibmachine.github.io/hkwmoabeat.github.io/"]
+        "title":            "takeanumberandhaveaseatplease.com",
+        "tagline":          "Absurd waiting room simulator \n and my first web project",
+        "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/TANAHASP_title.png",
+        "imgGallery":       [   "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/TANAHASP_sketch_idea1.png",
+                                "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/TANAHASP_Screenshot1.png" ],
+        "description":      "takeanumberandhaveaseatplease.com is a playful web experience built around the concept of deliberate uselessness. Visitors are invited to “take a number” and enter a virtual waiting room, where they receive a randomly generated ticket displayed on a small piece of paper held on screen. Their only objective is to wait until their number is called by the system. \n \n Once the users click 'Take a number', they will be taken into the waiting room. They will be assigned a randomly generated number, which is 'printed' onto the piece of paper held by a hand in the lower right corner. The user 'wins' if they wait until their number is called by the waiting number system in the upper left corner. The minimum possible wait time is 28 hours & the maximum possible wait time is around 16583 hours (1.9 years). The mean value lies at a waiting time of approx. 346 days.",
+        "team":             [   "Vi schreiber" ],
+        "client":           "Creative Technologies (m.a.) \n as the final project for Creative Coding 1",
+        "year":             "2022",    
+        "credits":          "Credits: \n Pixel Font: \n 'Mobile Font' created by Anke Arnold (www.anke-art.de) \n \n Background Music: \n 'Local Forecast (Elevator)' by Kevin MacLeod (incompetech.com) \n \n 'Bell' Sound Effect: \n by user 'SPANAC', found on https://www.freesoundslibrary.com/ding-dong-sound-effect/",      
+        "videoLinks":        [  "https://www.youtube.com/embed/ott_0kDkCyg"  ],
+        "projectLink":       ["https://github.com/schreibmachine/takeanumberandhaveaseatplease"]
     }
 ] 
