@@ -4,7 +4,7 @@
         "tagline":          "Making my own portfolio website",
         "mainImage":        "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/portfolio_title.png",
         "imgGallery":       [],
-        "description":      "I made this website myself because I needed a new one and I wanted to some funny things with it, like using THREE.js for my projects (for no good reason). \n \n  It is built with THREE.js, the physics are handled by Rapier3D. The cubes are dynamically created from a JSON that contains the project data, like descriptions, images and/or video links. \n \n You can check out the code on my GitHub account.",
+        "description":      "I made this website myself because I needed a new one and wanted to try some fun ideas with it. :) \n \n  The cube space is built with THREE.js, the physics are handled by Rapier3D. The project cubes are dynamically created from a JSON that contains the project data like titles, descriptions, images and/or video links. It is hosted using GitHub pages and you can check out the full repo on my GitHub account:",
         "team":             ["Vi Schreiber"],
         "year":             "2026", 
         "projectLink":       ["https://github.com/schreibmachine/portfolio"]
@@ -18,8 +18,7 @@
         "description":      "AudioGraph is an interactive, late-night listening experience inspired by the strange intimacy of radio after midnight. The project turns a virtual radio receiver into a space for discovering “audio photographs” — fragments of sound that capture fleeting moods, memories, and moments. \n \n  The application can only be accessed between 10 p.m. and 3 a.m., encouraging users to engage with it in the quiet hours when radio feels most personal. At night, a glowing globe becomes active: rotating it lets users tune into hidden sound pieces scattered across its surface. Finding them isn’t straightforward - just like with an old radio, signals fade in and out, and only careful adjustment reveals clear audio. \n  \n Visually minimal and intentionally lo-fi, the project focuses on atmosphere rather than spectacle, drawing from memories of unreliable kitchen radios, late-night callers, and the freedom of off-hour programming. One of the discoverable stations includes an hour-long custom late-night show, blending interviews, music, and storytelling. \n  \n AudioGraph explores radio not just as technology, but as a medium of intimacy, nostalgia, and nighttime wandering - a small world of sounds waiting to be tuned in.",
         "team":             ["Vi Schreiber"],
         "client":           "Creative Technologies (m.a.) \n as the final project for Creative Coding 2",
-        "year":             "2022",
-        "credits":          "Special Thanks to \n Prof. Angela Brenneke",          
+        "year":             "2022",         
         "videoLinks":        [   "https://www.youtube.com/embed/zFE25LIjcnA"]
     },
     {
@@ -151,7 +150,7 @@
                                 "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_Rendering_1.png",
                                 "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_Rendering_5.png",
                                 "https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/remote_unreal_ingame2 _edited" ],
-        "description":      "In my artistic-technical bachelor thesis REMOTE I worked on the implementation of a virtual reality game scene in which players can explore a part of a space station in VR and explore several volumetric videos. This prototype was designed as a vertical slice of a much larger game concept / story. \n \n Minimalist gameplay and the explorable environment support the immersive encounter with the captured 3D footage of real people. The integration of 'moving' photogrammetry posed a particular technical challenge and the core theme of the work. \n \n In the thesis I have present my experimental workflow and explain what processes I used to achieve the shown results. Furthermore, I tried to evaluate the applicability of the workflow and the involved steps and give an outlook on things that could be improved. \n You can read my thesis by following the link:",
+        "description":      "In my artistic-technical bachelor thesis REMOTE I worked on the implementation of a virtual reality game scene in which players can explore a part of a space station in VR and explore several volumetric videos. This prototype was designed as a vertical slice of a much larger game concept / story. All assets used in the application - with the exception of sky (stars) and saturn - have been created for the prototype by hand, either with Prof. Jan Berger (photogrammetry) or modelled, textured and implemented by me. \n \n A minimalist gameplay and the explorable environment support the immersive encounter with the captured 3D footage of real people. The integration of 'moving' photogrammetry posed a particular technical challenge and the core theme of the work. \n \n In the thesis I have present my experimental workflow and explain what processes I used to achieve the shown results. Furthermore, I tried to evaluate the applicability of the workflow and the involved steps and give an outlook on things that could be improved. \n You can read my thesis by following the link:",
         "team":             [   "Vi schreiber" ],
         "client":           "Bachelor thesis and project",
         "year":             "2021",
