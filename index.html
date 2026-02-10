@@ -37,11 +37,6 @@
     <body>
         <div class="main" id="section1">
             <img id= "star1" src="img/star_blue.PNG" class="star rotate linear infinite"/>
-            <!-- <h1>VI SCHREIBER</h1>
-            <h2>PORTFOLIO WEBSITE</h2>
-            <br>
-            <br>
-            <div class="renderer-container"></div> -->
             
             <div class="hero-layout">
                 <div class="hero-text">
@@ -272,7 +267,7 @@
                 .then(data => {
                     // when data is fetched:
                     projectsArray = data; // save the array for later
-                    console.log(projectsArray.length + ' projects loaded. Details: ', projectsArray);
+                    console.log(projectsArray.length + ' projects loaded.');
 
                     // build random spawn order first
                     spawnOrder = [...projectsArray.keys()];
@@ -283,7 +278,7 @@
 
 
                     // THEN spawn cubes:
-                    // Will create a new cube every n milliseconds (intervalID needed to kill it when finished) - here, to wai
+                    // Will create a new cube every n milliseconds (intervalID needed to kill it when finished)
                     intervalID ??= window.setInterval(createCube, 1000);
 
                 })
@@ -327,34 +322,9 @@
             }
             
 
-            // RAPIER stuff: -----------------------------------------------------------------------------
+            // CREATE THREE.JS + Rapier SCENE: -----------------------------------------------------------------------------
 
-            class RapierDebugRenderer {
-                mesh
-                world
-                enabled = true
-
-                constructor(scene, world) {
-                    this.world = world
-                    this.mesh = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xffffff, vertexColors: true }))
-                    this.mesh.frustumCulled = false
-                    scene.add(this.mesh)
-                }
-
-
-                update() {
-                    if (this.enabled) {
-                        const { vertices, colors } = world.debugRender()
-                        this.mesh.geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
-                        this.mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 4))
-                        this.mesh.visible = true
-                    } else {
-                        this.mesh.visible = false
-                    }
-                }
-            }
-
-            await RAPIER.init() // This line is needed!
+            await RAPIER.init() // This line is needed because I use the compat version of Rapier
             const gravity = new RAPIER.Vector3(0.0, -9.81, 0.0)
             const world = new RAPIER.World(gravity)
             const dynamicBodies = []
@@ -364,8 +334,6 @@
             let intervalID
 
             const scene = new THREE.Scene()
-
-            const rapierDebugRenderer = new RapierDebugRenderer(scene, world)
 
             const light1 = new THREE.SpotLight(undefined, Math.PI * 10)
             light1.position.set(2.5, 5, 5)
@@ -381,7 +349,7 @@
             scene.add(light2)
 
             const framePadding = 0.1
-            // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
+
             const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 100)
             camera.position.set(0, 2, 5)
 
@@ -392,7 +360,7 @@
             }
             let clampedWidth = clamp(window.innerWidth - (framePadding * window.innerWidth), 0, 1080);
             let clampedHeight = clamp(window.innerHeight - (framePadding * window.innerHeight), 0, 1080);
-            // renderer.setSize(clampedWidth, clampedHeight)
+
             //keep renderer square and fit to the smaller window size
                 if (clampedWidth <= clampedHeight) {
                     renderer.setSize(clampedWidth, clampedWidth)
@@ -408,6 +376,7 @@
             document.getElementById("renderer-container").appendChild(renderer.domElement);
 
 
+            // window EVENT LISTNERS --------------------------------------------------------------------------------------
 
             window.addEventListener('resize', () => {
                 // set overall viewport:
@@ -530,7 +499,6 @@
                 
                 // Create a canvas texture with the project title
                 const projectTitle = project?.title || 'Error';
-                // const projectTitle = projectsArray[cubeCounter-1]?.title || 'Error';
 
                 
                 // Color cube based on year
@@ -549,7 +517,6 @@
 
                 cubeMesh.name = id;
                 cubeMesh.userData.body = null;  
-                // cubeMesh.userData.projectIndex = cubeCounter - 1; // store index for popup
                 cubeMesh.userData.projectIndex = projectIndex; // store index for popup
 
 
@@ -576,20 +543,6 @@
                     clearInterval(intervalID);
                 }
             }
-
-
-
-            // function createBall(name) {
-                
-            //     // Ball Collider
-            //     const sphereMesh = new THREE.Mesh(new THREE.SphereGeometry(0.2), new THREE.MeshNormalMaterial())
-            //     sphereMesh.castShadow = true
-            //     scene.add(sphereMesh)
-            //     const sphereBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(0, 5, 2.5).setCanSleep(false))
-            //     const sphereShape = RAPIER.ColliderDesc.ball(.2).setMass(1).setRestitution(0.5)
-            //     world.createCollider(sphereShape, sphereBody)
-            //     dynamicBodies.push([sphereMesh, sphereBody])
-            // }
 
             // THE ROOM GEOMETRY: ------------------------------------------------------------------------------------------------------------
             // the floor (using a cuboid)
@@ -636,23 +589,6 @@
             const frontalShape = RAPIER.ColliderDesc.cuboid(25, 25, 0.5)
             world.createCollider(frontalShape, frontalBody)
 
-            /*
-            // creating a shape from a loaded geometry. (Using OBJLoader)
-            new OBJLoader().loadAsync('./models/suzanne.obj').then((object) => {
-                //console.log(object)
-                scene.add(object)
-                const suzanneMesh = object.getObjectByName('Suzanne')
-                suzanneMesh.material = new THREE.MeshNormalMaterial()
-                suzanneMesh.castShadow = true
-
-                const suzanneBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(-1, 10, 0).setCanSleep(false))
-                const points = new Float32Array(suzanneMesh.geometry.attributes.position.array)
-                const suzanneShape = RAPIER.ColliderDesc.convexHull(points).setMass(1).setRestitution(0.5)
-                world.createCollider(suzanneShape, suzanneBody)
-                dynamicBodies.push([suzanneMesh, suzanneBody])
-            })
-            */
-
             // DO STUFF WHEN CLICKING A CUBE -----------------------------------------------------
             const raycaster = new THREE.Raycaster()
             const mouse = new THREE.Vector2()
@@ -689,19 +625,7 @@
                 body.applyImpulse(new RAPIER.Vector3(0, 10, 0), true);
             });
 
-
-
-
-            // const stats = new Stats()
-            // document.body.appendChild(stats.dom)
-
-            // const gui = new GUI()
-            // gui.add(rapierDebugRenderer, 'enabled').name('Rapier Degug Renderer')
-
-            // const physicsFolder = gui.addFolder('Physics')
-            // physicsFolder.add(world.gravity, 'x', -10.0, 10.0, 0.1)
-            // physicsFolder.add(world.gravity, 'y', -10.0, 10.0, 0.1)
-            // physicsFolder.add(world.gravity, 'z', -10.0, 10.0, 0.1)
+            // UPDATE + RENDER LOOP --------------------------------------------------------------------------------------
 
             const clock = new THREE.Clock()
             let delta
@@ -721,16 +645,8 @@
                     mesh.position.set(pos.x, pos.y, pos.z);
                     mesh.quaternion.set(rot.x, rot.y, rot.z, rot.w);
                 }
-
-
-                
-                // rapierDebugRenderer.update()
-                
-                // controls.update()
                 
                 renderer.render(scene, camera)
-                
-                // stats.update().
             }
 
             animate()
@@ -742,19 +658,17 @@
             <a class="nav-button" id="toLanding" style="display:none;">Back</a>
 
             <div class="about-grid">
-
-                <div class="about-photo">
-                    <img src="https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/thisisme_square.jpg" alt="Portrait of Vi Schreiber. They are wearing a bright red turtle nek pullover and are holding the plastic model of a red lobster over their head and looking excitedly into the camera.">
-                    <a href="mailto:vi.schreiber@posteo.de" class="nav-button" id="btnMail" style="position: static; margin-top: 10%; justify-self: center; width: 40%; top: 70%; background-color: #4977b0; display:none;">Send Me an E-Mail!</a>
-
-                </div>
+                
+                    <img id="aboutPhoto" src="https://pub-9135e3be629b4521bdb9cd61fffd66e1.r2.dev/thisisme_square.jpg" alt="Analogue camera portrait of Vi Schreiber. They are wearing a bright red turtle neck pullover and holding the plastic model of a red lobster over their head. They are looking excitedly into the camera, as if screaming from joy.">
+                    <a  id="btnMail" href="mailto:vi.schreiber@posteo.de" class="nav-button">Send Me an E-Mail!</a>               
+                
 
                 <div class="about-text">
                     <h1>Hallo, I am Vi! :)</h1>
                     <h2 style="position: static;">pronouns: they/them</h2>
                     <p>I am currently studying Creative Technologies (M.A.) at the Filmuniversitaet Babelsberg KONRAD WOLF.
 
-                    Before C-Tech, I graduated the Bachelor Program for Game Design at the HTW Berlin. During my time there I worked on several game projects on different parts: from concept to design, from technical implementation to artistic realization.
+                    Before Creative Technologies, I graduated the Bachelor Program for Game Design at the HTW Berlin. During my time there I worked on several game projects on different parts: from concept to design, from technical implementation to artistic realization.
                     
                     Prior to my university studies, I completed a school-based training as a technical design assistant (Gestaltungstechnische:r Assistent:in) in the field of stage painting with a connected entrance qualification for a university of applied sciences.
 

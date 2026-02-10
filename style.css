@@ -320,7 +320,16 @@ p {
   text-align: left;
   font-weight:normal;
   white-space: pre-line;
+  overflow-y: auto;
+}
 
+#btnMail {
+  position: static;
+  margin-top: 10%;
+  justify-self: center;
+  width: 40%; top: 70%;
+  background-color: #4977b0;
+  display:none;
 }
 
 /* for the canvas renderer: ------------------------------------------------------ */
@@ -370,17 +379,43 @@ p {
   }
 }
 
-
+/* mobile mode: -------------------------------------------------------------------------------- */
 /* THIS MUST BE LAST IN THE FILE:  */
 @media (max-width: 850px) {
   .about-grid {
     grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
   }
+  .about-grid img{
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+  }
+  #btnMail {
+    width: 70%;
+    justify-self: center;
+    align-self: center;
+  }
+
   .modal-grid {
     grid-template-columns: 1fr;
   }
   .hero-layout {
+    grid-template-columns: 1fr;
     flex-direction: column;
+    justify-content: center;
+  }
+  .renderer-container {
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #myCoolRenderer {
+    justify-self: center;
+    align-self: center;
   }
 }
 
