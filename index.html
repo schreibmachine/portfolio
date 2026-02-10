@@ -55,11 +55,10 @@
                     </p>
                     <a class="nav-button" id="toAboutMe">About Me</a>
                 </div>
-
+                
                 <div id="renderer-container"></div>
-
+                
             </div>
-            
             
             
             <!-- popups! -->
@@ -118,7 +117,9 @@
                     ?.scrollIntoView({ behavior: "auto" });
             });
 
-
+            // update copyright notice in the corner to always be the current year: ---------------------------
+            const currentYear = new Date().getFullYear();
+            document.getElementById('copyRightNotice').textContent = " © Vi Schreiber " + currentYear;
 
             // nav button logic -------------------------------------------------------------------------------
             const btnAbout = document.getElementById('toAboutMe');
@@ -497,7 +498,7 @@
                     }
 
                     fontSize -= 1;
-                    console.log("I downsized", pText, "to", fontSize);
+                    // console.log("I downsized", pText, "to", fontSize);
                 }
 
 
@@ -763,6 +764,9 @@
                 
                 
             </div>
+
+            <p id="copyRightNotice" style="position: absolute; bottom: 8px; right: 10px;color: yellow; text-align: right; font-size:12px; font-weight: normal;"></p>
+
             
         </div>
 
