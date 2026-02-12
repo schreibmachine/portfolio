@@ -296,7 +296,9 @@ p {
   gap: 30px;
 
   align-items: start;
+  overflow-y: auto;
 }
+
 
 .about-grid img {
   width: 50%;
