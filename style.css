@@ -373,6 +373,21 @@ p {
   cursor: pointer;
 }
 
+.projectBtn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-family: "Courier New";
+  font-weight: bold;
+  text-decoration: none; /* if using <a> tag */
+  transition: 
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
 
 
 /* for the background rotation of the star: -------------------------------------- */

@@ -36,7 +36,7 @@
     </head>
     <body>
         <div class="main" id="section1">
-            <img id= "star1" src="img/star_blue.PNG" class="star rotate linear infinite"/>
+            <img id= "star1" src="img/star_blue.PNG" class="star rotate linear infinite" alt="a hand-drawn blue star that spins slowly and continuously"/>
             
             <div class="hero-layout">
                 <div class="hero-text">
@@ -44,14 +44,15 @@
                     <h2>PORTFOLIO WEBSITE</h2>
                     <p id="text_howTo" style="position: static; margin-top: 5vh; margin-left: 1vw; max-width: 260px;font-size: 10pt; font-weight: normal">
                         <span style="font-weight: bold">How to Use:</span>
-                        The falling cubes are my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #FFF6B0 0%, #ED00D5 100%); background-clip: text; color: transparent;">OLDEST to NEWEST</span>.
-                        ★ Click any of them to see details about the project
+                        The falling cubes link to my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #FFF6B0 0%, #ED00D5 100%); background-clip: text; color: transparent;">OLDEST to NEWEST</span>.
+                        ★ Click a cube to see details about the project
                         
-                        Can't see the cubes falling or having performance issues? Try the "Project List Mode", it just lists the projects and disables the renderer.
+                        Can't see the cubes falling or having performance issues?
+                        Click "List Mode" button for a simplified project overview (recommended for screen readers)
                         <!-- ★ Reload page for a new random assortment of cubes <span style="color: red"> WIP </span> -->
                     </p>
                     <a class="nav-button" tabindex=0 id="toAboutMe">About Me</a>
-                    <button id="accessibleToggle" tabindex=0 class="nav-button" style="position: static; margin-top: 5vh; display: flex; justify-content: center; max-width: 260px;">Project List Mode</button>
+                    <button id="accessibleToggle" tabindex=0 class="nav-button" style="position: static; margin-top: 5vh; display: flex; justify-content: center; max-width: 260px;">List Mode</button>
 
                 </div>
                 
@@ -65,7 +66,7 @@
             <div id="popup" class="popup">
                 <div class="modal">
                     
-                    <button id="closePopup" class="close-btn">✕</button>
+                    <button id="closePopup" tabindex=0 class="close-btn">✕</button>
                     
                     <div class="modal-grid">
                         <img id="popMainImage" class="titleImg" alt="Title image displaying the name of the project" />
@@ -197,6 +198,9 @@
                     const btn = document.createElement("button");
 
                     btn.className = "project-entry";
+                    btn.id = "proj_" + project.title.replace(/\s+/g, '_').toLowerCase(); // e.g. "My Cool Project" -> "proj_my_cool_project"
+                    btn.classList.add("projButton");
+
                     btn.innerText = project.title || "Missing Title";
 
                     btn.onclick = () => openPopupForProject(index);
@@ -206,6 +210,8 @@
 
                 document.getElementById("section1").appendChild(container);
             }
+
+
 
 
             // popup logic ------------------------------------------------------------------------------------
@@ -233,10 +239,10 @@
                 const project = projectsArray[index];
                 if (!project) return;
 
+                // fill the popup with project data :
                 popImg.src = project.mainImage;
                 popTitle.textContent = project.title;
                 popTagline.textContent = project.tagline;
-
 
                 // Team List
                 popTeamEpicContainer.innerHTML = ''; // clear previous
@@ -248,15 +254,15 @@
                 } else {
                     popTeamEpicContainer.innerHTML += 'Vi Schreiber';
                 }
-                // Client Text
+
                 popClient.textContent = project.client || 'myself';
                 popYear.textContent = project.year || '';
-
                 popText.textContent = project.description || '';;
                 popCredits.textContent = project.credits || '';
                 
                 if (project.projectLink) {
                     popProjectLink.href = project.projectLink;
+                    popProjectLink.tabIndex = 0;
                     popProjectLink.textContent = "Visit " + project.title;
                     popProjectLink.style.display = "inline-block";
                 } else {
@@ -304,12 +310,21 @@
 
             }
 
-            // for the closing the popup button i think
+            // for the closing the popup button
             document.getElementById('closePopup').addEventListener('click', () => {
                 popup.classList.remove('active');
                 btnAbout.style.display = 'block';
                 btnAccessToggle.style.display = 'flex';
             });
+
+            window.onkeydown = function(event) {
+                // close popup with ESC key, only if it's open (aka the about button is hidden)add 
+                if (btnAbout.style.display === 'none' && event.key === "Escape") {
+                    popup.classList.remove('active');
+                    btnAbout.style.display = 'block';
+                    btnAccessToggle.style.display = 'flex';
+                }
+            }
 
             // fetching the JSON & create cubes when finished ------------------------------------------------
 
@@ -671,8 +686,6 @@
                 const mesh = intersects[0].object;
                 const body = mesh.userData.body;
 
-                // Find the index of this mesh in dynamicBodies
-                // const index = dynamicBodies.indexOf(mesh);
                 const index = mesh.userData.projectIndex;
 
 
@@ -737,7 +750,7 @@
 
                     Beyond these fields of study, you can talk to me about all kinds of sewing, the art of drag, weird indie games and trashy anime.
 
-                    Photo by the wonderful @un.prof (instagram).
+                    Photo by the wonderful @un.prof (instagram)
                     </p>
                 </div>
                 
