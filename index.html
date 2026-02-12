@@ -42,13 +42,17 @@
                 <div class="hero-text">
                     <h1>VI SCHREIBER</h1>
                     <h2>PORTFOLIO WEBSITE</h2>
-                    <p style="position: static; margin-top: 5vh; margin-left: 1vw; max-width: 260px;font-size: 10pt; font-weight: normal">
+                    <p id="text_howTo" style="position: static; margin-top: 5vh; margin-left: 1vw; max-width: 260px;font-size: 10pt; font-weight: normal">
                         <span style="font-weight: bold">How to Use:</span>
                         The falling cubes are my projects! The colors indicate their age from <span style="font-weight: bold; background: linear-gradient(to right, #FFF6B0 0%, #ED00D5 100%); background-clip: text; color: transparent;">OLDEST to NEWEST</span>.
                         ★ Click any of them to see details about the project
+                        
+                        Can't see the cubes falling or having performance issues? Try the "Project List Mode", it just lists the projects and disables the renderer.
                         <!-- ★ Reload page for a new random assortment of cubes <span style="color: red"> WIP </span> -->
                     </p>
                     <a class="nav-button" tabindex=0 id="toAboutMe">About Me</a>
+                    <button id="accessibleToggle" tabindex=0 class="nav-button" style="position: static; margin-top: 5vh; display: flex; justify-content: center; max-width: 260px;">Project List Mode</button>
+
                 </div>
                 
                 <div id="renderer-container"></div>
@@ -120,6 +124,7 @@
             const btnAbout = document.getElementById('toAboutMe');
             const btnBack = document.getElementById('toLanding');
             const btnMail = document.getElementById("btnMail")
+            const btnAccessToggle = document.getElementById("accessibleToggle")
             
             const section1 = document.getElementById("section1");
             const section2 = document.getElementById("section2");
@@ -130,6 +135,8 @@
                 section2.scrollIntoView({ behavior: "smooth" });
 
                 btnAbout.style.display = 'none';
+                // btnAccessToggle.style.display = 'none';
+
 
                 btnBack.style.display = 'block';
                 btnMail.style.display = 'block';
@@ -140,13 +147,67 @@
                 section1.scrollIntoView({ behavior: "smooth" });
 
                 btnAbout.style.display = 'block';
+                // btnAccessToggle.style.display = 'block';
 
                 btnBack.style.display = 'none';
                 btnMail.style.display = 'none';
             });
 
-
             
+            // accessibility togle : --------------------------------------------------------------------------
+            let accessibleMode = false;
+
+            btnAccessToggle.addEventListener("click", toggleAccessibleMode);
+
+            function toggleAccessibleMode() {
+                accessibleMode = !accessibleMode;
+
+                document.body.classList.toggle("accessible-active", accessibleMode);
+
+                if (accessibleMode) {
+                    buildAccessibleProjectList();
+                    stopRenderer();
+                    // document.getElementById("text_howTo").style.display = 'none';
+                } else {
+                    removeAccessibleProjectList();
+                    startRenderer();
+                    // document.getElementById("text_howTo").style.display = 'block';
+                }
+            }
+
+            function stopRenderer() {
+                renderer.setAnimationLoop(null);
+            }
+
+            function startRenderer() {
+                renderer.setAnimationLoop(animate);
+            }
+
+            function removeAccessibleProjectList() {
+                const el = document.getElementById("accessible-projects");
+                if (el) el.remove();
+            }
+
+            function buildAccessibleProjectList() {
+                const container = document.createElement("div");
+                container.id = "accessible-projects";
+                container.className = "accessible-grid";
+
+                projectsArray.forEach((project, index) => {
+                    const btn = document.createElement("button");
+
+                    btn.className = "project-entry";
+                    btn.innerText = project.title || "Missing Title";
+
+                    btn.onclick = () => openPopupForProject(index);
+
+                    container.appendChild(btn);
+                });
+
+                document.getElementById("section1").appendChild(container);
+            }
+
+
             // popup logic ------------------------------------------------------------------------------------
             const popup = document.getElementById('popup');
             const popImg = document.getElementById('popMainImage');
@@ -167,6 +228,7 @@
             function openPopupForProject(index) {
                 // disable about button when popup is open
                 btnAbout.style.display = 'none';
+                btnAccessToggle.style.display = 'none';
 
                 const project = projectsArray[index];
                 if (!project) return;
@@ -246,6 +308,7 @@
             document.getElementById('closePopup').addEventListener('click', () => {
                 popup.classList.remove('active');
                 btnAbout.style.display = 'block';
+                btnAccessToggle.style.display = 'flex';
             });
 
             // fetching the JSON & create cubes when finished ------------------------------------------------
